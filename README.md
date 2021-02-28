@@ -5,7 +5,7 @@ A flutter package to display a country, states, and cities. In addition it gives
 <div style="text-align:center">
 <table>
 <tr>
-<td>![Vertical Layout](https://github.com/altafc22/csc_picker/blob/master/screenshot/vertical_layout.gif?raw=true)</td>
+<td>![Vertical Layout](https://github.com/[altafc22]/[csc_picker]/blob/[master]/screenshot/vertical_layout.gif?raw=true)</td>
 <td><img src="https://github.com/altafc22/csc_picker/blob/master/screenshot/vertical_layout.gif?raw=true"  alt="Vertical Layout" width="240"/></td>
 
 </tr>
