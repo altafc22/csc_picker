@@ -1,21 +1,21 @@
-class StatusModel {
+class Country {
   int id;
   String name;
   String emoji;
   String emojiU;
-  List<State> state;
+  List<Region> state;
 
-  StatusModel({this.id, this.name, this.emoji, this.emojiU, this.state});
+  Country({this.id, this.name, this.emoji, this.emojiU, this.state});
 
-  StatusModel.fromJson(Map<String, dynamic> json) {
+  Country.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     emoji = json['emoji'];
     emojiU = json['emojiU'];
     if (json['state'] != null) {
-      state = new List<State>();
+      state = new List<Region>();
       json['state'].forEach((v) {
-        state.add(new State.fromJson(v));
+        state.add(new Region.fromJson(v));
       });
     }
   }
@@ -33,15 +33,15 @@ class StatusModel {
   }
 }
 
-class State {
+class Region {
   int id;
   String name;
   int countryId;
   List<City> city;
 
-  State({this.id, this.name, this.countryId, this.city});
+  Region({this.id, this.name, this.countryId, this.city});
 
-  State.fromJson(Map<String, dynamic> json) {
+  Region.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     countryId = json['country_id'];

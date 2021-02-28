@@ -42,14 +42,14 @@ class DropdownWithSearch<T> extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           decoration: disabled?
-              BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: Colors.grey.shade300,
-                border: Border.all(color: Colors.grey.shade300, width: 1))
+          BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.grey.shade300,
+              border: Border.all(color: Colors.grey.shade300, width: 1))
               :BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                color: Colors.white,
-                border: Border.all(color: Colors.grey.shade300, width: 1)),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300, width: 1)),
           child: Row(
             children: [
               Expanded(child: Text(selected.toString(),overflow: TextOverflow.ellipsis,)),
@@ -132,8 +132,8 @@ class _SearchDialogState<T> extends State<SearchDialog> {
               autofocus: true,
               decoration: InputDecoration(
                 isDense: true,
-                  prefixIcon: Icon(Icons.search),
-                  hintText: widget.placeHolder,
+                prefixIcon: Icon(Icons.search),
+                hintText: widget.placeHolder,
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   borderSide: const BorderSide(color: Colors.black26,),

@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: [
                 CSCPicker(
+                  showFlag: false,
                   onCountryChanged: (value) {
                     setState(() {
                       countryValue = value;

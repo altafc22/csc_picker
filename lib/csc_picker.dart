@@ -4,7 +4,7 @@ import 'package:csc_picker/dropdown_with_search.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'model/select_status_model.dart' as StatusModel;
+import 'model/select_status_model.dart';
 
 enum Layout {
   vertical,
@@ -58,7 +58,7 @@ class _CSCPickerState extends State<CSCPicker> {
     _country.clear();
     var countryres = await getResponse() as List;
     countryres.forEach((data) {
-      var model = StatusModel.StatusModel();
+      var model = Country();
       model.name = data['name'];
       model.emoji = data['emoji'];
       if (!mounted) return;
@@ -70,10 +70,16 @@ class _CSCPickerState extends State<CSCPicker> {
   }
   Future getState() async {
     _states.clear();
+    print(_selectedCountry);
     var response = await getResponse();
-    var takestate = response
-        .map((map) => StatusModel.StatusModel.fromJson(map))
-        .where((item) => item.emoji + "    " + item.name == _selectedCountry)
+    var takestate = widget.showFlag ? response
+        .map((map) => Country.fromJson(map))
+        .where((item)=> item.emoji + "    " + item.name == _selectedCountry)
+        .map((item) => item.state)
+        .toList()
+    : response
+        .map((map) => Country.fromJson(map))
+        .where((item)=> item.name == _selectedCountry)
         .map((item) => item.state)
         .toList();
     var states = takestate as List;
@@ -93,9 +99,14 @@ class _CSCPickerState extends State<CSCPicker> {
   Future getCity() async {
     _cities.clear();
     var response = await getResponse();
-    var takestate = response
-        .map((map) => StatusModel.StatusModel.fromJson(map))
-        .where((item) => item.emoji + "    " + item.name == _selectedCountry)
+    var takestate = widget.showFlag ? response
+        .map((map) => Country.fromJson(map))
+        .where((item)=> item.emoji + "    " + item.name == _selectedCountry)
+        .map((item) => item.state)
+        .toList()
+        : response
+        .map((map) => Country.fromJson(map))
+        .where((item)=> item.name == _selectedCountry)
         .map((item) => item.state)
         .toList();
     var states = takestate as List;
@@ -159,7 +170,7 @@ class _CSCPickerState extends State<CSCPicker> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-             countryDropdown(),
+              countryDropdown(),
               SizedBox(height: 10.0,),
               stateDropdown(),
               SizedBox(height: 10.0,),
