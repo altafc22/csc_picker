@@ -13,15 +13,14 @@ class DropdownWithSearch<T> extends StatelessWidget {
 
   const DropdownWithSearch(
       {Key key,
-        @required this.title,
-        @required this.placeHolder,
-        @required this.items,
-        @required this.selected,
-        @required this.onChanged,
-        this.titleStyle,
-        this.itemStyle,
-        this.disabled = false
-      })
+      @required this.title,
+      @required this.placeHolder,
+      @required this.items,
+      @required this.selected,
+      @required this.onChanged,
+      this.titleStyle,
+      this.itemStyle,
+      this.disabled = false})
       : super(key: key);
 
   @override
@@ -41,18 +40,22 @@ class DropdownWithSearch<T> extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          decoration: disabled?
-          BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.grey.shade300,
-              border: Border.all(color: Colors.grey.shade300, width: 1))
-              :BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1)),
+          decoration: disabled
+              ? BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.grey.shade300,
+                  border: Border.all(color: Colors.grey.shade300, width: 1))
+              : BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300, width: 1)),
           child: Row(
             children: [
-              Expanded(child: Text(selected.toString(),overflow: TextOverflow.ellipsis,)),
+              Expanded(
+                  child: Text(
+                selected.toString(),
+                overflow: TextOverflow.ellipsis,
+              )),
               Icon(Icons.keyboard_arrow_down_rounded)
             ],
           ),
@@ -71,12 +74,11 @@ class SearchDialog extends StatefulWidget {
 
   const SearchDialog(
       {Key key,
-        @required this.title,
-        @required this.placeHolder,
-        @required this.items,
-        this.titleStyle,
-        this.itemStyle
-      })
+      @required this.title,
+      @required this.placeHolder,
+      @required this.items,
+      this.titleStyle,
+      this.itemStyle})
       : super(key: key);
 
   @override
@@ -97,9 +99,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
         } else {
           filteredList = widget.items
               .where((element) => element
-              .toString()
-              .toLowerCase()
-              .contains(textController.text.toLowerCase()))
+                  .toString()
+                  .toLowerCase()
+                  .contains(textController.text.toLowerCase()))
               .toList();
         }
       });
@@ -116,7 +118,8 @@ class _SearchDialogState<T> extends State<SearchDialog> {
   @override
   Widget build(BuildContext context) {
     return CustomDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(5))),
       constraints: const BoxConstraints(maxWidth: 500, maxHeight: 400),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -125,7 +128,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
           children: [
             Text(
               widget.title,
-              style: widget.titleStyle!=null?widget.titleStyle:TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: widget.titleStyle != null
+                  ? widget.titleStyle
+                  : TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 10),
             TextField(
@@ -136,14 +141,18 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                 hintText: widget.placeHolder,
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  borderSide: const BorderSide(color: Colors.black26,),
+                  borderSide: const BorderSide(
+                    color: Colors.black26,
+                  ),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   borderSide: const BorderSide(color: Colors.black12),
                 ),
               ),
-              style: widget.itemStyle!=null?widget.titleStyle:TextStyle(fontSize: 14),
+              style: widget.itemStyle != null
+                  ? widget.titleStyle
+                  : TextStyle(fontSize: 14),
               controller: textController,
             ),
             SizedBox(height: 8),
@@ -162,7 +171,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             child: Text(
                               filteredList[index].toString(),
-                              style: widget.itemStyle!=null?widget.titleStyle:TextStyle(fontSize: 14),
+                              style: widget.itemStyle != null
+                                  ? widget.titleStyle
+                                  : TextStyle(fontSize: 14),
                             ),
                           ));
                     }),
@@ -177,7 +188,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                   },
                   child: Text(
                     'CLOSE',
-                    style: widget.titleStyle!=null?widget.titleStyle:TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    style: widget.titleStyle != null
+                        ? widget.titleStyle
+                        : TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                   )),
             )
           ],
@@ -233,8 +246,8 @@ class CustomDialog extends StatelessWidget {
 
   // TODO(johnsonmh): Update default dialog border radius to 4.0 to match material spec.
   static const RoundedRectangleBorder _defaultDialogShape =
-  RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(2.0)));
+      RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(2.0)));
 
   @override
   Widget build(BuildContext context) {
