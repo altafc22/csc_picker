@@ -8,5 +8,8 @@
     * Code Formatted and optimised.
     * Documentation Added.
 
+## [0.0.4] - 2021/02/28
+    * Code Formatted and optimised.
+    * API Documentation Updated.
 
 
