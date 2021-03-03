@@ -1,5 +1,6 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
+
 /// This is a implementation of the Country State City Picker.
 void main() {
   runApp(MyApp());
@@ -29,7 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   /// Variables to store country state city data in onChanged method.
   String countryValue = "";
   String stateValue = "";
@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       countryValue = value;
                     });
                   },
+
                   ///triggers once state selected in dropdown
                   onStateChanged: (value) {
                     setState(() {
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       stateValue = value;
                     });
                   },
+
                   ///triggers once city selected in dropdown
                   onCityChanged: (value) {
                     setState(() {
@@ -72,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                   },
                 ),
+
                 ///print newly selected country state and city in Text Widget
                 FlatButton(
                     onPressed: () {

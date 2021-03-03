@@ -56,6 +56,7 @@ class _CSCPickerState extends State<CSCPicker> {
         .loadString('packages/csc_picker/lib/assets/country.json');
     return jsonDecode(res);
   }
+
   ///get countries from json response
   Future getCounty() async {
     _country.clear();
