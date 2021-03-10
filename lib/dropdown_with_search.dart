@@ -181,7 +181,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: FlatButton(
+              child: TextButton(
                   onPressed: () {
                     FocusScope.of(context).unfocus();
                     Navigator.pop(context);

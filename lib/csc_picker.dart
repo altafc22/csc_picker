@@ -34,9 +34,9 @@ class CSCPicker extends StatefulWidget {
 }
 
 class _CSCPickerState extends State<CSCPicker> {
-  List<String> _cities = new List();
-  List<String> _country = new List();
-  List<String> _states = new List();
+  List<String> _cities = [];
+  List<String> _country = [];
+  List<String> _states = [];
 
   String _selectedCity = "City";
   String _selectedCountry = "Country";

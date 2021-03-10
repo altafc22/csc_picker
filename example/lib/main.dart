@@ -76,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
 
                 ///print newly selected country state and city in Text Widget
-                FlatButton(
+                TextButton(
                     onPressed: () {
                       setState(() {
                         address = "$cityValue, $stateValue, $countryValue";
