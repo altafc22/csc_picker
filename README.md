@@ -1,4 +1,5 @@
-# csc_picker [![version](https://img.shields.io/badge/version-0.0.5-blue.svg](https://semver.org)
+# csc_picker 
+[![version](https://img.shields.io/badge/version-0.0.5-blue.svg](https://semver.org)
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
