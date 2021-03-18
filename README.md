@@ -45,6 +45,8 @@ you will get feedback in onChanged functions
 <tr><td>style</td><td>TextStyle - format text designs</td></tr>
 <tr><td>showFlag</td><td>Boolean - toggle country flag</td></tr>
 <tr><td>layout</td><td>Layout - toggle dropdown layout (Horizontal / Vertical)</td></tr>
+<tr><td>showStates</td><td>Boolean - Enable disable States dropdown (true / false)</td></tr>
+<tr><td>showCities</td><td>Boolean - Enable disable Cities dropdown (true / false)</td></tr>
 </table>
 
 ### Example

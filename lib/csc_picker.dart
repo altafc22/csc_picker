@@ -15,7 +15,7 @@ class CSCPicker extends StatefulWidget {
 
   ///Parameters to change style of CSC Picker
   final TextStyle style;
-  final bool showFlag;
+  final bool showFlag,showStates,showCities;
   final Layout layout;
 
   ///CSC Picker Constructor
@@ -26,7 +26,9 @@ class CSCPicker extends StatefulWidget {
       this.onCityChanged,
       this.style,
       this.showFlag = true,
-      this.layout = Layout.horizontal})
+      this.layout = Layout.horizontal,
+      this.showStates = true,
+      this.showCities = true})
       : super(key: key);
 
   @override
@@ -203,16 +205,14 @@ class _CSCPickerState extends State<CSCPicker> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Expanded(child: countryDropdown()),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      Expanded(child: stateDropdown()),
+                      widget.showStates?SizedBox(width: 10.0,):Container(),
+                      widget.showStates?Expanded(child: stateDropdown()):Container(),
                     ],
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
-                  cityDropdown()
+                 widget.showStates && widget.showCities ? cityDropdown():Container()
                 ],
               ),
       ],

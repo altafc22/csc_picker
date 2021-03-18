@@ -16,3 +16,7 @@
     * Updated for flutter 2.0.1
     * Deprecated widgets removed.
 
+## [0.0.6] - 2021/03/18
+    * Added new feature to enable disable state and city dropdown
+    * Supports Flutter Web
+
