@@ -271,7 +271,7 @@ class _CSCPickerState extends State<CSCPicker> {
   Widget stateDropdown() {
     return DropdownWithSearch(
       title: "State",
-      placeHolder: "Search Country",
+      placeHolder: "Search State",
       disabled: _states.length == 0 ? true : false,
       items: _states.map((String dropDownStringItem) {
         return dropDownStringItem;
