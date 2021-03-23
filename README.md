@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.0.8-blue.svg)
+![version](https://img.shields.io/badge/version-0.0.9-blue.svg)
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -41,9 +41,10 @@ you will get feedback in onChanged functions
 ### Parameters
 
 <table>
-<thead><td><b>Parameters</b></td><td><b>DataType &amp; Description</b></td></thead>
-<tr><td>style</td><td>TextStyle - format text designs</td></tr>
-<tr><td>showFlag</td><td>Boolean - toggle country flag</td></tr>
+<thead>
+<td><b>Parameters</b></td><td><b>DataType</b></td><td><b>Description</b></td></thead>
+<tr><td>style</td><td>TextStyle</td><td>format text designs</td></tr>
+<tr><td>flagState</td><td>CountryFlag</td><td>Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)</td></tr>
 <tr><td>layout</td><td>Layout - toggle dropdown layout (Horizontal / Vertical)</td></tr>
 <tr><td>showStates</td><td>Boolean - Enable disable States dropdown (true / false)</td></tr>
 <tr><td>showCities</td><td>Boolean - Enable disable Cities dropdown (true / false)</td></tr>
@@ -103,6 +104,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               children: [
                 CSCPicker(
+                  ///Enable disable state dropdown
+                  showStates: true,
+
+                  /// Enable disable city drop down
+                  showCities: false,
+
+                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
+                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+
                   onCountryChanged: (value) {
                     setState(() {
                       countryValue = value;

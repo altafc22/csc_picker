@@ -50,8 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ///Adding CSC Picker Widget in app
                 CSCPicker(
-                  showStates: true, ///Enable disable state dropdown
-                  showCities: false, /// Enable disable city drop down
+                  ///Enable disable state dropdown
+                  showStates: true,
+
+                  /// Enable disable city drop down
+                  showCities: false,
+
+                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
+                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
                     setState(() {

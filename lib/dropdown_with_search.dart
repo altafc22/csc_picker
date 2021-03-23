@@ -13,14 +13,14 @@ class DropdownWithSearch<T> extends StatelessWidget {
 
   const DropdownWithSearch(
       {Key key,
-        @required this.title,
-        @required this.placeHolder,
-        @required this.items,
-        @required this.selected,
-        @required this.onChanged,
-        this.titleStyle,
-        this.itemStyle,
-        this.disabled = false})
+      @required this.title,
+      @required this.placeHolder,
+      @required this.items,
+      @required this.selected,
+      @required this.onChanged,
+      this.titleStyle,
+      this.itemStyle,
+      this.disabled = false})
       : super(key: key);
 
   @override
@@ -42,20 +42,20 @@ class DropdownWithSearch<T> extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           decoration: disabled
               ? BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.grey.shade300,
-              border: Border.all(color: Colors.grey.shade300, width: 1))
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.grey.shade300,
+                  border: Border.all(color: Colors.grey.shade300, width: 1))
               : BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1)),
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300, width: 1)),
           child: Row(
             children: [
               Expanded(
                   child: Text(
-                    selected.toString(),
-                    overflow: TextOverflow.ellipsis,
-                  )),
+                selected.toString(),
+                overflow: TextOverflow.ellipsis,
+              )),
               Icon(Icons.keyboard_arrow_down_rounded)
             ],
           ),
@@ -74,11 +74,11 @@ class SearchDialog extends StatefulWidget {
 
   const SearchDialog(
       {Key key,
-        @required this.title,
-        @required this.placeHolder,
-        @required this.items,
-        this.titleStyle,
-        this.itemStyle})
+      @required this.title,
+      @required this.placeHolder,
+      @required this.items,
+      this.titleStyle,
+      this.itemStyle})
       : super(key: key);
 
   @override
@@ -99,9 +99,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
         } else {
           filteredList = widget.items
               .where((element) => element
-              .toString()
-              .toLowerCase()
-              .contains(textController.text.toLowerCase()))
+                  .toString()
+                  .toLowerCase()
+                  .contains(textController.text.toLowerCase()))
               .toList();
         }
       });
@@ -246,8 +246,8 @@ class CustomDialog extends StatelessWidget {
 
   // TODO(johnsonmh): Update default dialog border radius to 4.0 to match material spec.
   static const RoundedRectangleBorder _defaultDialogShape =
-  RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(2.0)));
+      RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(2.0)));
 
   @override
   Widget build(BuildContext context) {

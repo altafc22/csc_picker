@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'model/select_status_model.dart';
 
 enum Layout { vertical, horizontal }
+enum CountryFlag { SHOW_IN_DROP_DOWN_ONLY, ENABLE, DISABLE }
 
 class CSCPicker extends StatefulWidget {
   final ValueChanged<String> onCountryChanged;
@@ -15,7 +16,8 @@ class CSCPicker extends StatefulWidget {
 
   ///Parameters to change style of CSC Picker
   final TextStyle style;
-  final bool showFlag,showStates,showCities;
+  final bool showStates, showCities;
+  final CountryFlag flagState;
   final Layout layout;
 
   ///CSC Picker Constructor
@@ -25,7 +27,7 @@ class CSCPicker extends StatefulWidget {
       this.onStateChanged,
       this.onCityChanged,
       this.style,
-      this.showFlag = true,
+      this.flagState = CountryFlag.ENABLE,
       this.layout = Layout.horizontal,
       this.showStates = true,
       this.showCities = true})
@@ -42,6 +44,7 @@ class _CSCPickerState extends State<CSCPicker> {
 
   String _selectedCity = "City";
   String _selectedCountry = "Country";
+  String _selectedFlag = "";
   String _selectedState = "State";
   var responses;
 
@@ -69,8 +72,12 @@ class _CSCPickerState extends State<CSCPicker> {
       model.emoji = data['emoji'];
       if (!mounted) return;
       setState(() {
-        widget.showFlag
-            ? _country.add(model.emoji + "    " + model.name)
+        widget.flagState == CountryFlag.ENABLE ||
+                widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
+            ? /*widget.flagState == CountryFlag.ENABLE ? */ _country.add(
+                model.emoji +
+                    "    " +
+                    model.name) /* : _country.add(model.name)*/
             : _country.add(model.name);
       });
     });
@@ -82,7 +89,8 @@ class _CSCPickerState extends State<CSCPicker> {
     _states.clear();
     print(_selectedCountry);
     var response = await getResponse();
-    var takestate = widget.showFlag
+    var takestate = widget.flagState == CountryFlag.ENABLE ||
+            widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
         ? response
             .map((map) => Country.fromJson(map))
             .where(
@@ -113,7 +121,8 @@ class _CSCPickerState extends State<CSCPicker> {
   Future getCity() async {
     _cities.clear();
     var response = await getResponse();
-    var takestate = widget.showFlag
+    var takestate = widget.flagState == CountryFlag.ENABLE ||
+            widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
         ? response
             .map((map) => Country.fromJson(map))
             .where(
@@ -153,7 +162,11 @@ class _CSCPickerState extends State<CSCPicker> {
       _cities.clear();
       _selectedCity = "City";
       _selectedCountry = value;
-      this.widget.onCountryChanged(value);
+      if (widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY) {
+        this.widget.onCountryChanged(value.substring(6));
+      } else
+        this.widget.onCountryChanged(value);
+
       this.widget.onStateChanged(null);
       this.widget.onCityChanged(null);
       getState();
@@ -205,14 +218,22 @@ class _CSCPickerState extends State<CSCPicker> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Expanded(child: countryDropdown()),
-                      widget.showStates?SizedBox(width: 10.0,):Container(),
-                      widget.showStates?Expanded(child: stateDropdown()):Container(),
+                      widget.showStates
+                          ? SizedBox(
+                              width: 10.0,
+                            )
+                          : Container(),
+                      widget.showStates
+                          ? Expanded(child: stateDropdown())
+                          : Container(),
                     ],
                   ),
                   SizedBox(
                     height: 10.0,
                   ),
-                 widget.showStates && widget.showCities ? cityDropdown():Container()
+                  widget.showStates && widget.showCities
+                      ? cityDropdown()
+                      : Container()
                 ],
               ),
       ],
