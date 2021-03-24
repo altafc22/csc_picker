@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.0.9-blue.svg)
+![version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -45,9 +45,9 @@ you will get feedback in onChanged functions
 <td><b>Parameters</b></td><td><b>DataType</b></td><td><b>Description</b></td></thead>
 <tr><td>style</td><td>TextStyle</td><td>format text designs</td></tr>
 <tr><td>flagState</td><td>CountryFlag</td><td>Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)</td></tr>
-<tr><td>layout</td><td>Layout - toggle dropdown layout (Horizontal / Vertical)</td></tr>
-<tr><td>showStates</td><td>Boolean - Enable disable States dropdown (true / false)</td></tr>
-<tr><td>showCities</td><td>Boolean - Enable disable Cities dropdown (true / false)</td></tr>
+<tr><td>layout</td><td>Layout</td><td>Toggle dropdown layout (Horizontal / Vertical)</td></tr>
+<tr><td>showStates</td><td>Boolean</td><td> Enable disable States dropdown (true / false)</td></tr>
+<tr><td>showCities</td><td>Boolean</td><td> Enable disable Cities dropdown (true / false)</td></tr>
 </table>
 
 ### Example

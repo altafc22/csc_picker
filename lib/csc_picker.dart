@@ -44,7 +44,6 @@ class _CSCPickerState extends State<CSCPicker> {
 
   String _selectedCity = "City";
   String _selectedCountry = "Country";
-  String _selectedFlag = "";
   String _selectedState = "State";
   var responses;
 

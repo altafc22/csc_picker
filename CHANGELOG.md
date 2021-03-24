@@ -27,4 +27,7 @@
     * Added new parameter flagState to Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
     * Performance Optimised
     * Minor bugs removed
+    
+## [0.1.0] - 2021/03/24
+    * Removed unwanter lines of code
 
