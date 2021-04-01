@@ -1,9 +1,9 @@
 class Country {
-  int id;
-  String name;
-  String emoji;
-  String emojiU;
-  List<Region> state;
+  int? id;
+  String? name;
+  String? emoji;
+  String? emojiU;
+  List<Region>? state;
 
   Country({this.id, this.name, this.emoji, this.emojiU, this.state});
 
@@ -15,7 +15,7 @@ class Country {
     if (json['state'] != null) {
       state = [];
       json['state'].forEach((v) {
-        state.add(new Region.fromJson(v));
+        state!.add(new Region.fromJson(v));
       });
     }
   }
@@ -27,17 +27,17 @@ class Country {
     data['emoji'] = this.emoji;
     data['emojiU'] = this.emojiU;
     if (this.state != null) {
-      data['state'] = this.state.map((v) => v.toJson()).toList();
+      data['state'] = this.state!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Region {
-  int id;
-  String name;
-  int countryId;
-  List<City> city;
+  int? id;
+  String? name;
+  int? countryId;
+  List<City>? city;
 
   Region({this.id, this.name, this.countryId, this.city});
 
@@ -48,7 +48,7 @@ class Region {
     if (json['city'] != null) {
       city = [];
       json['city'].forEach((v) {
-        city.add(new City.fromJson(v));
+        city!.add(new City.fromJson(v));
       });
     }
   }
@@ -59,16 +59,16 @@ class Region {
     data['name'] = this.name;
     data['country_id'] = this.countryId;
     if (this.city != null) {
-      data['city'] = this.city.map((v) => v.toJson()).toList();
+      data['city'] = this.city!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class City {
-  int id;
-  String name;
-  int stateId;
+  int? id;
+  String? name;
+  int? stateId;
 
   City({this.id, this.name, this.stateId});
 
