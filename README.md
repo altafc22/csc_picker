@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.1.0-blue.svg)
+![version](https://img.shields.io/badge/version-0.2.0-blue.svg)
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -48,6 +48,11 @@ you will get feedback in onChanged functions
 <tr><td>layout</td><td>Layout</td><td>Toggle dropdown layout (Horizontal / Vertical)</td></tr>
 <tr><td>showStates</td><td>Boolean</td><td> Enable disable States dropdown (true / false)</td></tr>
 <tr><td>showCities</td><td>Boolean</td><td> Enable disable Cities dropdown (true / false)</td></tr>
+<tr><td>dropdownDecoration</td><td>BoxDecoration</td><td>Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)</td></tr>
+<tr><td>disabledDropdownDecoration</td><td>BoxDecoration</td><td>Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)</td></tr>
+<tr><td>selectedItemStyle</td><td>TextStyle</td><td>To change selected item style [OPTIONAL PARAMETER]</td></tr>
+<tr><td>dropdownHeadingStyle</td><td>TextStyle</td><td>To change DropdownDialog Heading style [OPTIONAL PARAMETER]</td></tr>
+<tr><td>dropdownItemStyle</td><td>TextStyle</td><td>To change DropdownDialog Item style [OPTIONAL PARAMETER]</td></tr>
 </table>
 
 ### Example
@@ -112,6 +117,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
                   flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+
+                  ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
+                  dropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade300, width: 1)),
+
+                  ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
+                  disabledDropdownDecoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      color: Colors.grey.shade300,
+                      border: Border.all(color: Colors.grey.shade300, width: 1)),
+
+                  ///selected item style [OPTIONAL PARAMETER]
+                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+
+                  ///DropdownDialog Heading style [OPTIONAL PARAMETER]
+                  dropdownHeadingStyle: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
+
+                  ///DropdownDialog Item style [OPTIONAL PARAMETER]
+                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, fontWeight: FontWeight.bold),
 
                   onCountryChanged: (value) {
                     setState(() {

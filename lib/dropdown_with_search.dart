@@ -5,21 +5,28 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final String placeHolder;
   final T selected;
   final List items;
-  final TextStyle titleStyle;
-  final TextStyle itemStyle;
+  final EdgeInsets? selectedItemPadding;
+  final TextStyle? selectedItemStyle;
+  final TextStyle? dropdownHeadingStyle;
+  final TextStyle? itemStyle;
+  final BoxDecoration? decoration,disabledDecoration;
   final bool disabled;
 
   final Function onChanged;
 
   const DropdownWithSearch(
-      {Key key,
-      @required this.title,
-      @required this.placeHolder,
-      @required this.items,
-      @required this.selected,
-      @required this.onChanged,
-      this.titleStyle,
+      {Key? key,
+      required this.title,
+      required this.placeHolder,
+      required this.items,
+      required this.selected,
+      required this.onChanged,
+      this.selectedItemPadding,
+      this.selectedItemStyle,
+      this.dropdownHeadingStyle,
       this.itemStyle,
+      this.decoration,
+      this.disabledDecoration,
       this.disabled = false})
       : super(key: key);
 
@@ -34,20 +41,21 @@ class DropdownWithSearch<T> extends StatelessWidget {
               builder: (context) => SearchDialog(
                   placeHolder: placeHolder,
                   title: title,
+                  titleStyle: dropdownHeadingStyle,
+                  itemStyle: itemStyle,
                   items: items)).then((value) {
             onChanged(value);
           });
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          decoration: disabled
-              ? BoxDecoration(
+          decoration: !disabled ? decoration!=null ? decoration : BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              color: Colors.white,
+              border: Border.all(color: Colors.grey.shade300, width: 1)) :
+              disabledDecoration!=null ? disabledDecoration : BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   color: Colors.grey.shade300,
-                  border: Border.all(color: Colors.grey.shade300, width: 1))
-              : BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.white,
                   border: Border.all(color: Colors.grey.shade300, width: 1)),
           child: Row(
             children: [
@@ -55,6 +63,9 @@ class DropdownWithSearch<T> extends StatelessWidget {
                   child: Text(
                 selected.toString(),
                 overflow: TextOverflow.ellipsis,
+                     style : selectedItemStyle != null
+                          ? selectedItemStyle
+                          : TextStyle(fontSize: 14)
               )),
               Icon(Icons.keyboard_arrow_down_rounded)
             ],
@@ -69,14 +80,14 @@ class SearchDialog extends StatefulWidget {
   final String title;
   final String placeHolder;
   final List items;
-  final TextStyle titleStyle;
-  final TextStyle itemStyle;
+  final TextStyle? titleStyle;
+  final TextStyle? itemStyle;
 
   const SearchDialog(
-      {Key key,
-      @required this.title,
-      @required this.placeHolder,
-      @required this.items,
+      {Key? key,
+      required this.title,
+      required this.placeHolder,
+      required this.items,
       this.titleStyle,
       this.itemStyle})
       : super(key: key);
@@ -87,7 +98,7 @@ class SearchDialog extends StatefulWidget {
 
 class _SearchDialogState<T> extends State<SearchDialog> {
   TextEditingController textController = TextEditingController();
-  List filteredList;
+  late List filteredList;
 
   @override
   void initState() {
@@ -122,7 +133,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
           borderRadius: BorderRadius.all(Radius.circular(5))),
       constraints: const BoxConstraints(maxWidth: 500, maxHeight: 400),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -151,7 +162,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                 ),
               ),
               style: widget.itemStyle != null
-                  ? widget.titleStyle
+                  ? widget.itemStyle
                   : TextStyle(fontSize: 14),
               controller: textController,
             ),
@@ -172,7 +183,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                             child: Text(
                               filteredList[index].toString(),
                               style: widget.itemStyle != null
-                                  ? widget.titleStyle
+                                  ? widget.itemStyle
                                   : TextStyle(fontSize: 14),
                             ),
                           ));
@@ -205,7 +216,7 @@ class CustomDialog extends StatelessWidget {
   ///
   /// Typically used in conjunction with [showDialog].
   const CustomDialog({
-    Key key,
+    Key? key,
     this.child,
     this.insetAnimationDuration = const Duration(milliseconds: 100),
     this.insetAnimationCurve = Curves.decelerate,
@@ -216,7 +227,7 @@ class CustomDialog extends StatelessWidget {
   /// The widget below this widget in the tree.
   ///
   /// {@macro flutter.widgets.child}
-  final Widget child;
+  final Widget? child;
 
   /// The duration of the animation to show when the system keyboard intrudes
   /// into the space that the dialog is placed in.
@@ -237,7 +248,7 @@ class CustomDialog extends StatelessWidget {
   ///
   /// The default shape is a [RoundedRectangleBorder] with a radius of 2.0.
   /// {@endtemplate}
-  final ShapeBorder shape;
+  final ShapeBorder? shape;
   final BoxConstraints constraints;
 
   Color _getColor(BuildContext context) {
