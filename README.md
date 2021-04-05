@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   showCities: true,
 
                   ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
