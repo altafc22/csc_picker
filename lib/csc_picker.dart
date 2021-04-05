@@ -344,7 +344,7 @@ class _CSCPickerState extends State<CSCPicker> {
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
       disabledDecoration: widget.disabledDropdownDecoration,
-      selected: _selectedState != null ? _selectedState : "State",
+      selected: _selectedState ,
       //onChanged: (value) => _onSelectedState(value),
       onChanged: (value) {
           //print("stateChanged $value $_selectedState");
@@ -369,7 +369,7 @@ class _CSCPickerState extends State<CSCPicker> {
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
       disabledDecoration: widget.disabledDropdownDecoration,
-      selected: _selectedCity != null ? _selectedCity : "City",
+      selected: _selectedCity,
       //onChanged: (value) => _onSelectedCity(value),
       onChanged: (value) {
         //print("cityChanged $value $_selectedCity");
