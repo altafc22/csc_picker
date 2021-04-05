@@ -1,13 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-
-//String? _lastSelected;
-
 class DropdownWithSearch<T> extends StatelessWidget {
-
-
   final String title;
   final String placeHolder;
   final T selected;
@@ -16,7 +9,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final TextStyle? selectedItemStyle;
   final TextStyle? dropdownHeadingStyle;
   final TextStyle? itemStyle;
-  final BoxDecoration? decoration,disabledDecoration;
+  final BoxDecoration? decoration, disabledDecoration;
   final double? searchBarRadius;
   final double? dialogRadius;
   final bool disabled;
@@ -43,8 +36,6 @@ class DropdownWithSearch<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return AbsorbPointer(
       absorbing: disabled,
       child: GestureDetector(
@@ -59,8 +50,8 @@ class DropdownWithSearch<T> extends StatelessWidget {
                   titleStyle: dropdownHeadingStyle,
                   itemStyle: itemStyle,
                   items: items)).then((value) {
-                    onChanged(value);
-                    /* if(value!=null)
+            onChanged(value);
+            /* if(value!=null)
                     {
                       onChanged(value);
                       _lastSelected = value;
@@ -73,24 +64,28 @@ class DropdownWithSearch<T> extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          decoration: !disabled ? decoration!=null ? decoration : BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300, width: 1)) :
-              disabledDecoration!=null ? disabledDecoration : BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.grey.shade300,
-                  border: Border.all(color: Colors.grey.shade300, width: 1)),
+          decoration: !disabled
+              ? decoration != null
+                  ? decoration
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.grey.shade300, width: 1))
+              : disabledDecoration != null
+                  ? disabledDecoration
+                  : BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      color: Colors.grey.shade300,
+                      border:
+                          Border.all(color: Colors.grey.shade300, width: 1)),
           child: Row(
             children: [
               Expanded(
-                  child: Text(
-                selected.toString(),
-                overflow: TextOverflow.ellipsis,
-                     style : selectedItemStyle != null
+                  child: Text(selected.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: selectedItemStyle != null
                           ? selectedItemStyle
-                          : TextStyle(fontSize: 14)
-              )),
+                          : TextStyle(fontSize: 14))),
               Icon(Icons.keyboard_arrow_down_rounded)
             ],
           ),
@@ -158,7 +153,10 @@ class _SearchDialogState<T> extends State<SearchDialog> {
   @override
   Widget build(BuildContext context) {
     return CustomDialog(
-      shape: RoundedRectangleBorder(borderRadius: widget.dialogRadius!=null?BorderRadius.circular(widget.dialogRadius!):BorderRadius.circular(14)),
+      shape: RoundedRectangleBorder(
+          borderRadius: widget.dialogRadius != null
+              ? BorderRadius.circular(widget.dialogRadius!)
+              : BorderRadius.circular(14)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12.0),
         child: Column(
@@ -178,7 +176,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                 ),
                 IconButton(
                     icon: Icon(Icons.close),
-                    onPressed: (){
+                    onPressed: () {
                       FocusScope.of(context).unfocus();
                       Navigator.pop(context);
                     })
@@ -208,11 +206,19 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                   prefixIcon: Icon(Icons.search),
                   hintText: widget.placeHolder,
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(widget.searchInputRadius!=null?Radius.circular(widget.searchInputRadius!):Radius.circular(5)),
-                    borderSide: const BorderSide(color: Colors.black26,),
+                    borderRadius: BorderRadius.all(
+                        widget.searchInputRadius != null
+                            ? Radius.circular(widget.searchInputRadius!)
+                            : Radius.circular(5)),
+                    borderSide: const BorderSide(
+                      color: Colors.black26,
+                    ),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(widget.searchInputRadius!=null?Radius.circular(widget.searchInputRadius!):Radius.circular(5)),
+                    borderRadius: BorderRadius.all(
+                        widget.searchInputRadius != null
+                            ? Radius.circular(widget.searchInputRadius!)
+                            : Radius.circular(5)),
                     borderSide: const BorderSide(color: Colors.black12),
                   ),
                 ),
@@ -225,7 +231,9 @@ class _SearchDialogState<T> extends State<SearchDialog> {
             SizedBox(height: 5),
             Expanded(
               child: ClipRRect(
-                borderRadius: BorderRadius.all(widget.dialogRadius!=null?Radius.circular(widget.dialogRadius!):Radius.circular(5)),
+                borderRadius: BorderRadius.all(widget.dialogRadius != null
+                    ? Radius.circular(widget.dialogRadius!)
+                    : Radius.circular(5)),
                 //borderRadius: widget.dialogRadius!=null?BorderRadius.circular(widget.dropDownRadius!):BorderRadius.circular(14),
                 child: ListView.builder(
                     itemCount: filteredList.length,
@@ -236,7 +244,8 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                             Navigator.pop(context, filteredList[index]);
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 18),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 18),
                             child: Text(
                               filteredList[index].toString(),
                               style: widget.itemStyle != null
@@ -264,7 +273,8 @@ class CustomDialog extends StatelessWidget {
     this.insetAnimationDuration = const Duration(milliseconds: 100),
     this.insetAnimationCurve = Curves.decelerate,
     this.shape,
-    this.constraints = const BoxConstraints(minWidth: 280.0, minHeight: 280.0, maxHeight: 400.0, maxWidth: 400.0),
+    this.constraints = const BoxConstraints(
+        minWidth: 280.0, minHeight: 280.0, maxHeight: 400.0, maxWidth: 400.0),
   }) : super(key: key);
 
   /// The widget below this widget in the tree.

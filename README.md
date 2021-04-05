@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.2.2-blue.svg) ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
+![version](https://img.shields.io/badge/version-0.2.3-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   showCities: true,
 
                   ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(

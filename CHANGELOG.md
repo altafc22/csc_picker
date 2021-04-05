@@ -1,4 +1,4 @@
-## [0.2.1 - 0.2.2] - 2021/04/05
+## [0.2.1 - 0.2.3] - 2021/04/05
     * dropdownDialogRadius option is added to change the dilogbox corner raduis
     * searchBarRadius option is added to change the searchbar corner raduis
     * selected item clear bug resolved
@@ -18,7 +18,7 @@
     * Performance Optimised
     * Minor bugs removed
     
-## [0.0.6..0.0.8] - 2021/03/18
+## [0.0.6 - 0.0.8] - 2021/03/18
     * Added new feature to enable disable state and city dropdown
     * Supports Flutter Web
     * Performance Optimised
