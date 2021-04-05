@@ -1,4 +1,9 @@
-## [0.2.0] - 2021/04/24
+## [0.2.1] - 2021/04/05
+    * dropdownDialogRadius option is added to change the dilogbox corner raduis
+    * searchBarRadius option is added to change the searchbar corner raduis
+    * selected item clear bug resolved
+
+## [0.2.0] - 2021/04/01
     * Added Dropdown Decoration options
     * Added Text Style options
     * Now support Null Safety

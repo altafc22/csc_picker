@@ -50,14 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ///Adding CSC Picker Widget in app
                 CSCPicker(
-                  ///Enable disable state dropdown
+                  ///Enable disable state dropdown [OPTIONAL PARAMETER]
                   showStates: true,
 
-                  /// Enable disable city drop down
+                  /// Enable disable city drop down [OPTIONAL PARAMETER]
                   showCities: true,
 
-                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
-                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
@@ -72,13 +71,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(color: Colors.grey.shade300, width: 1)),
 
                   ///selected item style [OPTIONAL PARAMETER]
-                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14,),
 
                   ///DropdownDialog Heading style [OPTIONAL PARAMETER]
                   dropdownHeadingStyle: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
 
                   ///DropdownDialog Item style [OPTIONAL PARAMETER]
-                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, fontWeight: FontWeight.bold),
+                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, ),
+
+                  ///Dialog box radius [OPTIONAL PARAMETER]
+                  dropdownDialogRadius: 10.0,
+
+                  ///Search bar radius [OPTIONAL PARAMETER]
+                  searchBarRadius: 10.0,
 
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
