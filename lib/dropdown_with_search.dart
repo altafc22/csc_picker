@@ -1,6 +1,13 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
+
+//String? _lastSelected;
+
 class DropdownWithSearch<T> extends StatelessWidget {
+
+
   final String title;
   final String placeHolder;
   final T selected;
@@ -10,6 +17,8 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final TextStyle? dropdownHeadingStyle;
   final TextStyle? itemStyle;
   final BoxDecoration? decoration,disabledDecoration;
+  final double? searchBarRadius;
+  final double? dialogRadius;
   final bool disabled;
 
   final Function onChanged;
@@ -27,24 +36,39 @@ class DropdownWithSearch<T> extends StatelessWidget {
       this.itemStyle,
       this.decoration,
       this.disabledDecoration,
+      this.searchBarRadius,
+      this.dialogRadius,
       this.disabled = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+
     return AbsorbPointer(
       absorbing: disabled,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           showDialog(
               context: context,
               builder: (context) => SearchDialog(
                   placeHolder: placeHolder,
                   title: title,
+                  searchInputRadius: searchBarRadius,
+                  dialogRadius: dialogRadius,
                   titleStyle: dropdownHeadingStyle,
                   itemStyle: itemStyle,
                   items: items)).then((value) {
-            onChanged(value);
+                    onChanged(value);
+                    /* if(value!=null)
+                    {
+                      onChanged(value);
+                      _lastSelected = value;
+                    }
+                    else {
+                      print("Value NULL $value $_lastSelected");
+                      onChanged(_lastSelected);
+                    }*/
           });
         },
         child: Container(
@@ -82,6 +106,9 @@ class SearchDialog extends StatefulWidget {
   final List items;
   final TextStyle? titleStyle;
   final TextStyle? itemStyle;
+  final double? searchInputRadius;
+
+  final double? dialogRadius;
 
   const SearchDialog(
       {Key? key,
@@ -89,6 +116,8 @@ class SearchDialog extends StatefulWidget {
       required this.placeHolder,
       required this.items,
       this.titleStyle,
+      this.searchInputRadius,
+      this.dialogRadius,
       this.itemStyle})
       : super(key: key);
 
@@ -129,47 +158,75 @@ class _SearchDialogState<T> extends State<SearchDialog> {
   @override
   Widget build(BuildContext context) {
     return CustomDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5))),
-      constraints: const BoxConstraints(maxWidth: 500, maxHeight: 400),
-      child: Padding(
-        padding: EdgeInsets.all(16),
+      shape: RoundedRectangleBorder(borderRadius: widget.dialogRadius!=null?BorderRadius.circular(widget.dialogRadius!):BorderRadius.circular(14)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              widget.title,
-              style: widget.titleStyle != null
-                  ? widget.titleStyle
-                  : TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                isDense: true,
-                prefixIcon: Icon(Icons.search),
-                hintText: widget.placeHolder,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  borderSide: const BorderSide(
-                    color: Colors.black26,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    widget.title,
+                    style: widget.titleStyle != null
+                        ? widget.titleStyle
+                        : TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  borderSide: const BorderSide(color: Colors.black12),
-                ),
-              ),
-              style: widget.itemStyle != null
-                  ? widget.itemStyle
-                  : TextStyle(fontSize: 14),
-              controller: textController,
+                IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: (){
+                      FocusScope.of(context).unfocus();
+                      Navigator.pop(context);
+                    })
+                /*Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Close',
+                      style: widget.titleStyle != null
+                          ? widget.titleStyle
+                          : TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    )),
+              )*/
+              ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 5),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              child: TextField(
+                autofocus: true,
+                decoration: InputDecoration(
+                  isDense: true,
+                  prefixIcon: Icon(Icons.search),
+                  hintText: widget.placeHolder,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(widget.searchInputRadius!=null?Radius.circular(widget.searchInputRadius!):Radius.circular(5)),
+                    borderSide: const BorderSide(color: Colors.black26,),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(widget.searchInputRadius!=null?Radius.circular(widget.searchInputRadius!):Radius.circular(5)),
+                    borderSide: const BorderSide(color: Colors.black12),
+                  ),
+                ),
+                style: widget.itemStyle != null
+                    ? widget.itemStyle
+                    : TextStyle(fontSize: 14),
+                controller: textController,
+              ),
+            ),
+            SizedBox(height: 5),
             Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 5),
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(widget.dialogRadius!=null?Radius.circular(widget.dialogRadius!):Radius.circular(5)),
+                //borderRadius: widget.dialogRadius!=null?BorderRadius.circular(widget.dropDownRadius!):BorderRadius.circular(14),
                 child: ListView.builder(
                     itemCount: filteredList.length,
                     itemBuilder: (context, index) {
@@ -179,7 +236,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                             Navigator.pop(context, filteredList[index]);
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 18),
                             child: Text(
                               filteredList[index].toString(),
                               style: widget.itemStyle != null
@@ -190,20 +247,6 @@ class _SearchDialogState<T> extends State<SearchDialog> {
                     }),
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                  onPressed: () {
-                    FocusScope.of(context).unfocus();
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'CLOSE',
-                    style: widget.titleStyle != null
-                        ? widget.titleStyle
-                        : TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  )),
-            )
           ],
         ),
       ),
@@ -221,7 +264,7 @@ class CustomDialog extends StatelessWidget {
     this.insetAnimationDuration = const Duration(milliseconds: 100),
     this.insetAnimationCurve = Curves.decelerate,
     this.shape,
-    this.constraints = const BoxConstraints(minWidth: 280.0),
+    this.constraints = const BoxConstraints(minWidth: 280.0, minHeight: 280.0, maxHeight: 400.0, maxWidth: 400.0),
   }) : super(key: key);
 
   /// The widget below this widget in the tree.

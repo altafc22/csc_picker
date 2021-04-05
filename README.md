@@ -42,17 +42,18 @@ you will get feedback in onChanged functions
 
 <table>
 <thead>
-<td><b>Parameters</b></td><td><b>DataType</b></td><td><b>Description</b></td></thead>
-<tr><td>style</td><td>TextStyle</td><td>format text designs</td></tr>
+<td><b>Parameters</b></td><td><b>Type</b></td><td><b>Description</b></td></thead>
 <tr><td>flagState</td><td>CountryFlag</td><td>Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)</td></tr>
 <tr><td>layout</td><td>Layout</td><td>Toggle dropdown layout (Horizontal / Vertical)</td></tr>
 <tr><td>showStates</td><td>Boolean</td><td> Enable disable States dropdown (true / false)</td></tr>
 <tr><td>showCities</td><td>Boolean</td><td> Enable disable Cities dropdown (true / false)</td></tr>
 <tr><td>dropdownDecoration</td><td>BoxDecoration</td><td>Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)</td></tr>
 <tr><td>disabledDropdownDecoration</td><td>BoxDecoration</td><td>Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)</td></tr>
-<tr><td>selectedItemStyle</td><td>TextStyle</td><td>To change selected item style [OPTIONAL PARAMETER]</td></tr>
-<tr><td>dropdownHeadingStyle</td><td>TextStyle</td><td>To change DropdownDialog Heading style [OPTIONAL PARAMETER]</td></tr>
-<tr><td>dropdownItemStyle</td><td>TextStyle</td><td>To change DropdownDialog Item style [OPTIONAL PARAMETER]</td></tr>
+<tr><td>selectedItemStyle</td><td>TextStyle</td><td>To change selected item style</td></tr>
+<tr><td>dropdownHeadingStyle</td><td>TextStyle</td><td>To change DropdownDialog Heading style</td></tr>
+<tr><td>dropdownItemStyle</td><td>TextStyle</td><td>To change DropdownDialog Item style</td></tr>
+<tr><td>dropdownDialogRadius</td><td>double</td><td>To change DropdownDialogBox radius</td></tr>
+<tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
 </table>
 
 ### Example
@@ -61,6 +62,7 @@ you will get feedback in onChanged functions
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
+/// This is a implementation of the Country State City Picker.
 void main() {
   runApp(MyApp());
 }
@@ -89,34 +91,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String countryValue ="";
-  String stateValue ="";
-  String cityValue ="";
+  /// Variables to store country state city data in onChanged method.
+  String countryValue = "";
+  String stateValue = "";
+  String cityValue = "";
+  String address = "";
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
         child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20),
             height: 600,
-            child:
-            Column(
+            child: Column(
               children: [
+                ///Adding CSC Picker Widget in app
                 CSCPicker(
-                  ///Enable disable state dropdown
+                  ///Enable disable state dropdown [OPTIONAL PARAMETER]
                   showStates: true,
 
-                  /// Enable disable city drop down
-                  showCities: false,
+                  /// Enable disable city drop down [OPTIONAL PARAMETER]
+                  showCities: true,
 
-                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)
-                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
@@ -131,39 +132,60 @@ class _MyHomePageState extends State<MyHomePage> {
                       border: Border.all(color: Colors.grey.shade300, width: 1)),
 
                   ///selected item style [OPTIONAL PARAMETER]
-                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14,),
 
                   ///DropdownDialog Heading style [OPTIONAL PARAMETER]
                   dropdownHeadingStyle: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
 
                   ///DropdownDialog Item style [OPTIONAL PARAMETER]
-                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, fontWeight: FontWeight.bold),
+                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, ),
 
+                  ///Dialog box radius [OPTIONAL PARAMETER]
+                  dropdownDialogRadius: 10.0,
+
+                  ///Search bar radius [OPTIONAL PARAMETER]
+                  searchBarRadius: 10.0,
+
+                  ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
                     setState(() {
+                      ///store value in country variable
                       countryValue = value;
                     });
                   },
-                  onStateChanged:(value) {
+
+                  ///triggers once state selected in dropdown
+                  onStateChanged: (value) {
                     setState(() {
+                      ///store value in state variable
                       stateValue = value;
                     });
                   },
-                  onCityChanged:(value) {
+
+                  ///triggers once city selected in dropdown
+                  onCityChanged: (value) {
                     setState(() {
+                      ///store value in city variable
                       cityValue = value;
                     });
                   },
                 ),
-                Text("$countryValue\n$stateValue\n$cityValue")
+
+                ///print newly selected country state and city in Text Widget
+                TextButton(
+                    onPressed: () {
+                      setState(() {
+                        address = "$cityValue, $stateValue, $countryValue";
+                      });
+                    },
+                    child: Text("Print Data")),
+                Text(address)
               ],
-            )
-        ),
+            )),
       ),
     );
   }
 }
-
 ```
 
 ### Special Thanks to
