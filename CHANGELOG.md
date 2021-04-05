@@ -1,7 +1,8 @@
-## [0.2.1] - 2021/04/05
+## [0.2.1 - 0.2.2] - 2021/04/05
     * dropdownDialogRadius option is added to change the dilogbox corner raduis
     * searchBarRadius option is added to change the searchbar corner raduis
     * selected item clear bug resolved
+    * code optimized
 
 ## [0.2.0] - 2021/04/01
     * Added Dropdown Decoration options
