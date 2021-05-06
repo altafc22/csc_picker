@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.2.3-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
+![version](https://img.shields.io/badge/version-0.2.4-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -54,6 +54,7 @@ you will get feedback in onChanged functions
 <tr><td>dropdownItemStyle</td><td>TextStyle</td><td>To change DropdownDialog Item style</td></tr>
 <tr><td>dropdownDialogRadius</td><td>double</td><td>To change DropdownDialogBox radius</td></tr>
 <tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
+<tr><td>defaultCountry</td><td>DefaultCountry</td><td>To select default country</td></tr>
 </table>
 
 ### Example
@@ -146,6 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///Search bar radius [OPTIONAL PARAMETER]
                   searchBarRadius: 10.0,
+
+                  ///Default Country [OPTIONAL PARAMETER]
+                  defaultCountry: DefaultCountry.United_Arab_Emirates,
 
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
