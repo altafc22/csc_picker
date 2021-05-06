@@ -43,7 +43,7 @@ you will get feedback in onChanged functions
 <table>
 <thead>
 <td><b>Parameters</b></td><td><b>Type</b></td><td><b>Description</b></td></thead>
-<tr><td>flagState</td><td>CountryFlag</td><td>Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)</td></tr>
+<tr><td>flagState</td><td>CountryFlag</td><td>Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only)</td></tr>
 <tr><td>layout</td><td>Layout</td><td>Toggle dropdown layout (Horizontal / Vertical)</td></tr>
 <tr><td>showStates</td><td>Boolean</td><td> Enable disable States dropdown (true / false)</td></tr>
 <tr><td>showCities</td><td>Boolean</td><td> Enable disable Cities dropdown (true / false)</td></tr>
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   /// Enable disable city drop down [OPTIONAL PARAMETER]
                   showCities: true,
 
-                  ///Enable (get flat with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
+                  ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
                   flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
