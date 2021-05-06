@@ -1,5 +1,6 @@
-## [0.2.4] - 2021/05/06
-    * now you can select default country in csc picker
+## [0.2.4 - 0.2.5] - 2021/05/06
+    * Now you can select default country in csc picker
+    * Documentation updated
     
 ## [0.2.1 - 0.2.3] - 2021/04/05
     * dropdownDialogRadius option is added to change the dilogbox corner raduis
