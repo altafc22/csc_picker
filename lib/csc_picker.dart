@@ -1,7 +1,5 @@
 library csc_picker;
 
-import 'dart:developer';
-
 import 'package:csc_picker/dropdown_with_search.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
