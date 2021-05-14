@@ -514,9 +514,36 @@ const Map<DefaultCountry, int> DefaultCountries = {
 };
 
 class CSCPicker extends StatefulWidget {
+  ///CSC Picker Constructor
+  const CSCPicker({
+    Key? key,
+    this.onCountryChanged,
+    this.onStateChanged,
+    this.onCityChanged,
+    this.selectedItemStyle,
+    this.dropdownHeadingStyle,
+    this.dropdownItemStyle,
+    this.dropdownDecoration,
+    this.disabledDropdownDecoration,
+    this.searchBarRadius,
+    this.dropdownDialogRadius,
+    this.flagState = CountryFlag.ENABLE,
+    this.layout = Layout.horizontal,
+    this.showStates = true,
+    this.showCities = true,
+    this.defaultCountry,
+    this.currentCountry,
+    this.currentState,
+    this.currentCity,
+  }) : super(key: key);
+
   final ValueChanged<String>? onCountryChanged;
   final ValueChanged<String?>? onStateChanged;
   final ValueChanged<String?>? onCityChanged;
+
+  final String? currentCountry;
+  final String? currentState;
+  final String? currentCity;
 
   ///Parameters to change style of CSC Picker
   final TextStyle? selectedItemStyle, dropdownHeadingStyle, dropdownItemStyle;
@@ -526,27 +553,8 @@ class CSCPicker extends StatefulWidget {
   final Layout layout;
   final double? searchBarRadius;
   final double? dropdownDialogRadius;
-  final DefaultCountry? defaultCountry;
 
-  ///CSC Picker Constructor
-  const CSCPicker(
-      {Key? key,
-      this.onCountryChanged,
-      this.onStateChanged,
-      this.onCityChanged,
-      this.selectedItemStyle,
-      this.dropdownHeadingStyle,
-      this.dropdownItemStyle,
-      this.dropdownDecoration,
-      this.disabledDropdownDecoration,
-      this.searchBarRadius,
-      this.dropdownDialogRadius,
-      this.flagState = CountryFlag.ENABLE,
-      this.layout = Layout.horizontal,
-      this.showStates = true,
-      this.showCities = true,
-      this.defaultCountry})
-      : super(key: key);
+  final DefaultCountry? defaultCountry;
 
   @override
   _CSCPickerState createState() => _CSCPickerState();
@@ -557,16 +565,32 @@ class _CSCPickerState extends State<CSCPicker> {
   List<String?> _country = [];
   List<String?> _states = [];
 
-  String _selectedCity = "City";
+  String _selectedCity = 'City';
   String? _selectedCountry;
-  String _selectedState = "State";
+  String _selectedState = 'State';
   var responses;
 
   @override
   void initState() {
-    // TODO: implement initState
-    getCounty();
     super.initState();
+    setDefaults();
+    getCountries();
+  }
+
+  Future<void> setDefaults() async {
+    if (widget.currentCountry != null) {
+      setState(() => _selectedCountry = widget.currentCountry);
+      await getStates();
+    }
+
+    if (widget.currentState != null) {
+      setState(() => _selectedState = widget.currentState!);
+      await getCities();
+    }
+
+    if (widget.currentCity != null) {
+      setState(() => _selectedCity = widget.currentCity!);
+    }
   }
 
   void _setDefaultCountry() {
@@ -577,14 +601,14 @@ class _CSCPickerState extends State<CSCPicker> {
   }
 
   ///Read JSON country data from assets
-  Future getResponse() async {
+  Future<dynamic> getResponse() async {
     var res = await rootBundle
         .loadString('packages/csc_picker/lib/assets/country.json');
     return jsonDecode(res);
   }
 
   ///get countries from json response
-  Future getCounty() async {
+  Future<List<String?>> getCountries() async {
     _country.clear();
     var countries = await getResponse() as List;
     countries.forEach((data) {
@@ -606,7 +630,7 @@ class _CSCPickerState extends State<CSCPicker> {
   }
 
   ///get states from json response
-  Future getState() async {
+  Future<List<String?>> getStates() async {
     _states.clear();
     //print(_selectedCountry);
     var response = await getResponse();
@@ -639,7 +663,7 @@ class _CSCPickerState extends State<CSCPicker> {
   }
 
   ///get cities from json response
-  Future getCity() async {
+  Future<List<String?>> getCities() async {
     _cities.clear();
     var response = await getResponse();
     var takeCity = widget.flagState == CountryFlag.ENABLE ||
@@ -693,7 +717,7 @@ class _CSCPickerState extends State<CSCPicker> {
         this.widget.onStateChanged!(null);
         this.widget.onCityChanged!(null);
         _selectedCountry = value;
-        getState();
+        getStates();
       } else {
         this.widget.onStateChanged!(_selectedState);
         this.widget.onCityChanged!(_selectedCity);
@@ -711,7 +735,7 @@ class _CSCPickerState extends State<CSCPicker> {
         _selectedCity = "City";
         this.widget.onCityChanged!(null);
         _selectedState = value;
-        getCity();
+        getCities();
       } else {
         this.widget.onCityChanged!(_selectedCity);
       }
