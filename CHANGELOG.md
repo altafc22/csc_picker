@@ -1,3 +1,10 @@
+## [0.2.6] - 2021/05/14
+    * Introduce the `currentCountry`, `currentState`, and `currentCity` properties to allow previously selected values to remain
+    * Sort `CSCPicker` constructor first
+    * Move `super.initState` before other calls in `csc_picker.dart`
+    * Fix some typos, method names
+    * Fix some async method types
+
 ## [0.2.4 - 0.2.5] - 2021/05/06
     * Now you can select default country in csc picker
     * Documentation updated
