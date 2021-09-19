@@ -535,6 +535,13 @@ class CSCPicker extends StatefulWidget {
     this.currentCountry,
     this.currentState,
     this.currentCity,
+    this.disableCountry = false,
+    this.countrySearchPlaceholder = "Search Country",
+    this.stateSearchPlaceholder = "Search State",
+    this.citySearchPlaceholder = "Search City",
+    this.countryDropdownLabel = "Country",
+    this.stateDropdownLabel = "State",
+    this.cityDropdownLabel = "City",
   }) : super(key: key);
 
   final ValueChanged<String>? onCountryChanged;
@@ -544,6 +551,8 @@ class CSCPicker extends StatefulWidget {
   final String? currentCountry;
   final String? currentState;
   final String? currentCity;
+
+  final bool disableCountry;
 
   ///Parameters to change style of CSC Picker
   final TextStyle? selectedItemStyle, dropdownHeadingStyle, dropdownItemStyle;
@@ -556,11 +565,19 @@ class CSCPicker extends StatefulWidget {
 
   final DefaultCountry? defaultCountry;
 
+  final String countrySearchPlaceholder;
+  final String stateSearchPlaceholder;
+  final String citySearchPlaceholder;
+
+  final String countryDropdownLabel;
+  final String stateDropdownLabel;
+  final String cityDropdownLabel;
+
   @override
-  _CSCPickerState createState() => _CSCPickerState();
+  CSCPickerState createState() => CSCPickerState();
 }
 
-class _CSCPickerState extends State<CSCPicker> {
+class CSCPickerState extends State<CSCPicker> {
   List<String?> _cities = [];
   List<String?> _country = [];
   List<String?> _states = [];
@@ -575,6 +592,8 @@ class _CSCPickerState extends State<CSCPicker> {
     super.initState();
     setDefaults();
     getCountries();
+    _selectedCity = widget.cityDropdownLabel;
+    _selectedState = widget.stateDropdownLabel;
   }
 
   Future<void> setDefaults() async {
@@ -712,8 +731,8 @@ class _CSCPickerState extends State<CSCPicker> {
       if (value != _selectedCountry) {
         _states.clear();
         _cities.clear();
-        _selectedState = "State";
-        _selectedCity = "City";
+        _selectedState = widget.stateDropdownLabel;
+        _selectedCity = widget.cityDropdownLabel;
         this.widget.onStateChanged!(null);
         this.widget.onCityChanged!(null);
         _selectedCountry = value;
@@ -732,7 +751,7 @@ class _CSCPickerState extends State<CSCPicker> {
       //code added in if condition
       if (value != _selectedState) {
         _cities.clear();
-        _selectedCity = "City";
+        _selectedCity = widget.cityDropdownLabel;
         this.widget.onCityChanged!(null);
         _selectedState = value;
         getCities();
@@ -837,20 +856,21 @@ class _CSCPickerState extends State<CSCPicker> {
   ///Country Dropdown Widget
   Widget countryDropdown() {
     return DropdownWithSearch(
-      title: "Country",
-      placeHolder: "Search Country",
+      title: widget.countryDropdownLabel,
+      placeHolder: widget.countrySearchPlaceholder,
       selectedItemStyle: widget.selectedItemStyle,
       dropdownHeadingStyle: widget.dropdownHeadingStyle,
       itemStyle: widget.dropdownItemStyle,
       decoration: widget.dropdownDecoration,
       disabledDecoration: widget.disabledDropdownDecoration,
-      disabled: _country.length == 0 ? true : false,
+      disabled: _country.length == 0 || widget.disableCountry ? true : false,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
+      label: widget.countrySearchPlaceholder,
       items: _country.map((String? dropDownStringItem) {
         return dropDownStringItem;
       }).toList(),
-      selected: _selectedCountry != null ? _selectedCountry : "Country",
+      selected: _selectedCountry != null ? _selectedCountry : widget.countryDropdownLabel,
       //selected: _selectedCountry != null ? _selectedCountry : "Country",
       //onChanged: (value) => _onSelectedCountry(value),
       onChanged: (value) {
@@ -865,8 +885,8 @@ class _CSCPickerState extends State<CSCPicker> {
   ///State Dropdown Widget
   Widget stateDropdown() {
     return DropdownWithSearch(
-      title: "State",
-      placeHolder: "Search State",
+      title: widget.stateDropdownLabel,
+      placeHolder: widget.stateSearchPlaceholder,
       disabled: _states.length == 0 ? true : false,
       items: _states.map((String? dropDownStringItem) {
         return dropDownStringItem;
@@ -879,6 +899,7 @@ class _CSCPickerState extends State<CSCPicker> {
       searchBarRadius: widget.searchBarRadius,
       disabledDecoration: widget.disabledDropdownDecoration,
       selected: _selectedState,
+      label: widget.stateSearchPlaceholder,
       //onChanged: (value) => _onSelectedState(value),
       onChanged: (value) {
         //print("stateChanged $value $_selectedState");
@@ -892,8 +913,8 @@ class _CSCPickerState extends State<CSCPicker> {
   ///City Dropdown Widget
   Widget cityDropdown() {
     return DropdownWithSearch(
-      title: "City",
-      placeHolder: "Search City",
+      title: widget.cityDropdownLabel,
+      placeHolder: widget.citySearchPlaceholder,
       disabled: _cities.length == 0 ? true : false,
       items: _cities.map((String? dropDownStringItem) {
         return dropDownStringItem;
@@ -906,6 +927,7 @@ class _CSCPickerState extends State<CSCPicker> {
       searchBarRadius: widget.searchBarRadius,
       disabledDecoration: widget.disabledDropdownDecoration,
       selected: _selectedCity,
+      label: widget.citySearchPlaceholder,
       //onChanged: (value) => _onSelectedCity(value),
       onChanged: (value) {
         //print("cityChanged $value $_selectedCity");

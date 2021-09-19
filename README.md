@@ -1,5 +1,5 @@
 # csc_picker 
-![version](https://img.shields.io/badge/version-0.2.5-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
+![version](https://img.shields.io/badge/version-0.2.6-blue.svg)  ![version](https://img.shields.io/badge/NullSefety-True-brightgreen) 
 
 A flutter package to display a country, states, and cities. In addition it gives the possibility to select a list of countries, States and Cities depends on Selected, also you can search country, state, and city all around the world.
 
@@ -55,6 +55,13 @@ you will get feedback in onChanged functions
 <tr><td>dropdownDialogRadius</td><td>double</td><td>To change DropdownDialogBox radius</td></tr>
 <tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
 <tr><td>defaultCountry</td><td>DefaultCountry</td><td>To select default country</td></tr>
+<tr><td>disableCountry</td><td>DisableCountry</td><td>Disable country dropdown (Note: use it with default country)</td></tr>
+<tr><td>countrySearchPlaceholder</td><td>String</td><td>Placeholder for country search field</td></tr>
+<tr><td>stateSearchPlaceholder</td><td>String</td><td>Placeholder for state search field</td></tr>
+<tr><td>citySearchPlaceholder</td><td>String</td><td>Placeholder for city search field</td></tr>
+<tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for country dropdown</td></tr>
+<tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for state dropdown</td></tr>
+<tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for city dropdown</td></tr>
 </table>
 
 ### Example
@@ -100,6 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -119,37 +129,61 @@ class _MyHomePageState extends State<MyHomePage> {
                   showCities: true,
 
                   ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
-                  flagState: CountryFlag.SHOW_IN_DROP_DOWN_ONLY,
+                  flagState: CountryFlag.DISABLE,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: Colors.white,
-                      border: Border.all(color: Colors.grey.shade300, width: 1)),
+                      border:
+                      Border.all(color: Colors.grey.shade300, width: 1)),
 
                   ///Disabled Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER]  (USE with disabled dropdownDecoration)
                   disabledDropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: Colors.grey.shade300,
-                      border: Border.all(color: Colors.grey.shade300, width: 1)),
+                      border:
+                      Border.all(color: Colors.grey.shade300, width: 1)),
+
+                  ///placeholders for dropdown search field
+                  countrySearchPlaceholder: "Country",
+                  stateSearchPlaceholder: "State",
+                  citySearchPlaceholder: "City",
+
+                  ///labels for dropdown
+                  countryDropdownLabel: "*Country",
+                  stateDropdownLabel: "*State",
+                  cityDropdownLabel: "*City",
+
+                  ///Default Country
+                  //defaultCountry: DefaultCountry.India,
+
+                  ///Disable country dropdown (Note: use it with default country)
+                  //disableCountry: true,
 
                   ///selected item style [OPTIONAL PARAMETER]
-                  selectedItemStyle: TextStyle(color: Colors.black, fontSize: 14,),
+                  selectedItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
 
                   ///DropdownDialog Heading style [OPTIONAL PARAMETER]
-                  dropdownHeadingStyle: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
+                  dropdownHeadingStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
 
                   ///DropdownDialog Item style [OPTIONAL PARAMETER]
-                  dropdownItemStyle: TextStyle(color: Colors.black,fontSize: 14, ),
+                  dropdownItemStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
 
                   ///Dialog box radius [OPTIONAL PARAMETER]
                   dropdownDialogRadius: 10.0,
 
                   ///Search bar radius [OPTIONAL PARAMETER]
                   searchBarRadius: 10.0,
-
-                  ///Default Country [OPTIONAL PARAMETER]
-                  defaultCountry: DefaultCountry.United_Arab_Emirates,
 
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {

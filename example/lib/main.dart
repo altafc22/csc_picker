@@ -38,6 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -73,8 +76,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       border:
                           Border.all(color: Colors.grey.shade300, width: 1)),
 
+                  ///placeholders for dropdown search field
+                  countrySearchPlaceholder: "Country",
+                  stateSearchPlaceholder: "State",
+                  citySearchPlaceholder: "City",
+
+                  ///labels for dropdown
+                  countryDropdownLabel: "*Country",
+                  stateDropdownLabel: "*State",
+                  cityDropdownLabel: "*City",
+
                   ///Default Country
-                  defaultCountry: DefaultCountry.India,
+                  //defaultCountry: DefaultCountry.India,
+
+                  ///Disable country dropdown (Note: use it with default country)
+                  //disableCountry: true,
 
                   ///selected item style [OPTIONAL PARAMETER]
                   selectedItemStyle: TextStyle(
