@@ -19,21 +19,21 @@ class DropdownWithSearch<T> extends StatelessWidget {
 
   const DropdownWithSearch(
       {Key? key,
-        required this.title,
-        required this.placeHolder,
-        required this.items,
-        required this.selected,
-        required this.onChanged,
-        this.selectedItemPadding,
-        this.selectedItemStyle,
-        this.dropdownHeadingStyle,
-        this.itemStyle,
-        this.decoration,
-        this.disabledDecoration,
-        this.searchBarRadius,
-        this.dialogRadius,
-        required this.label,
-        this.disabled = false})
+      required this.title,
+      required this.placeHolder,
+      required this.items,
+      required this.selected,
+      required this.onChanged,
+      this.selectedItemPadding,
+      this.selectedItemStyle,
+      this.dropdownHeadingStyle,
+      this.itemStyle,
+      this.decoration,
+      this.disabledDecoration,
+      this.searchBarRadius,
+      this.dialogRadius,
+      required this.label,
+      this.disabled = false})
       : super(key: key);
 
   @override

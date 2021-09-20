@@ -9,7 +9,16 @@ class Country {
   int? countrycode;
   List<Region>? state;
 
-  Country({this.id, this.name, this.emoji, this.emojiU, this.state, this.iso2, this.iso3, this.frenchname, this.countrycode});
+  Country(
+      {this.id,
+      this.name,
+      this.emoji,
+      this.emojiU,
+      this.state,
+      this.iso2,
+      this.iso3,
+      this.frenchname,
+      this.countrycode});
 
   Country.fromJson(Map<String, dynamic> json) {
     id = json['id'];

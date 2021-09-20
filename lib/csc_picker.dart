@@ -870,7 +870,9 @@ class CSCPickerState extends State<CSCPicker> {
       items: _country.map((String? dropDownStringItem) {
         return dropDownStringItem;
       }).toList(),
-      selected: _selectedCountry != null ? _selectedCountry : widget.countryDropdownLabel,
+      selected: _selectedCountry != null
+          ? _selectedCountry
+          : widget.countryDropdownLabel,
       //selected: _selectedCountry != null ? _selectedCountry : "Country",
       //onChanged: (value) => _onSelectedCountry(value),
       onChanged: (value) {

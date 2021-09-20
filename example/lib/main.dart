@@ -38,7 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
 
     return Scaffold(
