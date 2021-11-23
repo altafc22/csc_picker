@@ -789,6 +789,9 @@ class CSCPickerState extends State<CSCPicker> {
                       color: Color(0xff3C372F),
                     ),
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   countryDropdown(),
                   SizedBox(
                     height: 20.0,
@@ -801,6 +804,9 @@ class CSCPickerState extends State<CSCPicker> {
                       color: Color(0xff3C372F),
                     ),
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   stateDropdown(),
                   SizedBox(
                     height: 20.0,
@@ -812,6 +818,9 @@ class CSCPickerState extends State<CSCPicker> {
                       fontSize: 14.0,
                       color: Color(0xff3C372F),
                     ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
                   ),
                   cityDropdown()
                 ],
