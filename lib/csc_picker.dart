@@ -778,15 +778,40 @@ class CSCPickerState extends State<CSCPicker> {
       children: [
         widget.layout == Layout.vertical
             ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Text(
+                    "Country",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      color: Color(0xff3C372F),
+                    ),
+                  ),
                   countryDropdown(),
                   SizedBox(
-                    height: 10.0,
+                    height: 20.0,
+                  ),
+                  Text(
+                    "State",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      color: Color(0xff3C372F),
+                    ),
                   ),
                   stateDropdown(),
                   SizedBox(
-                    height: 10.0,
+                    height: 20.0,
+                  ),
+                  Text(
+                    "City",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14.0,
+                      color: Color(0xff3C372F),
+                    ),
                   ),
                   cityDropdown()
                 ],
