@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'model/select_status_model.dart';
 
 enum Layout { vertical, horizontal }
+
 enum CountryFlag { SHOW_IN_DROP_DOWN_ONLY, ENABLE, DISABLE }
+
 enum DefaultCountry {
   Afghanistan,
   Aland_Islands,
@@ -260,6 +262,7 @@ enum DefaultCountry {
   Curacao,
   Sint_Maarten_Dutch_part
 }
+
 const Map<DefaultCountry, int> DefaultCountries = {
   DefaultCountry.Afghanistan: 0,
   DefaultCountry.Aland_Islands: 1,
@@ -542,6 +545,7 @@ class CSCPicker extends StatefulWidget {
     this.countryDropdownLabel = "Country",
     this.stateDropdownLabel = "State",
     this.cityDropdownLabel = "City",
+    this.countryFilter,
   }) : super(key: key);
 
   final ValueChanged<String>? onCountryChanged;
@@ -573,6 +577,8 @@ class CSCPicker extends StatefulWidget {
   final String stateDropdownLabel;
   final String cityDropdownLabel;
 
+  final List<String>? countryFilter;
+
   @override
   CSCPickerState createState() => CSCPickerState();
 }
@@ -581,6 +587,7 @@ class CSCPickerState extends State<CSCPicker> {
   List<String?> _cities = [];
   List<String?> _country = [];
   List<String?> _states = [];
+  List<String> _countryFilter = [];
 
   String _selectedCity = 'City';
   String? _selectedCountry;
@@ -591,6 +598,9 @@ class CSCPickerState extends State<CSCPicker> {
   void initState() {
     super.initState();
     setDefaults();
+    if (widget.countryFilter != null) {
+      _countryFilter = widget.countryFilter!;
+    }
     getCountries();
     _selectedCity = widget.cityDropdownLabel;
     _selectedState = widget.stateDropdownLabel;
@@ -630,22 +640,36 @@ class CSCPickerState extends State<CSCPicker> {
   Future<List<String?>> getCountries() async {
     _country.clear();
     var countries = await getResponse() as List;
-    countries.forEach((data) {
-      var model = Country();
-      model.name = data['name'];
-      model.emoji = data['emoji'];
-      if (!mounted) return;
-      setState(() {
-        widget.flagState == CountryFlag.ENABLE ||
-                widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
-            ? _country.add(model.emoji! +
-                "    " +
-                model.name!) /* : _country.add(model.name)*/
-            : _country.add(model.name);
+    if (_countryFilter.isNotEmpty) {
+      countries.forEach((data) {
+        String name = data['name'];
+        if (_countryFilter.contains(name)) {
+          addCountryToList(data);
+        }
       });
-    });
+    } else {
+      countries.forEach((data) {
+        addCountryToList(data);
+      });
+    }
     _setDefaultCountry();
     return _country;
+  }
+
+  ///Add a country to country list
+  void addCountryToList(data) {
+    var model = Country();
+    model.name = data['name'];
+    model.emoji = data['emoji'];
+    if (!mounted) return;
+    setState(() {
+      widget.flagState == CountryFlag.ENABLE ||
+              widget.flagState == CountryFlag.SHOW_IN_DROP_DOWN_ONLY
+          ? _country.add(model.emoji! +
+              "    " +
+              model.name!) /* : _country.add(model.name)*/
+          : _country.add(model.name);
+    });
   }
 
   ///get states from json response

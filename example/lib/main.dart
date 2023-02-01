@@ -138,6 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       cityValue = value;
                     });
                   },
+
+                  ///Show only specific countries using country filter
+                  // countryFilter: ["United States", "Canada", "Mexico"],
                 ),
 
                 ///print newly selected country state and city in Text Widget
