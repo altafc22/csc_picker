@@ -1,4 +1,4 @@
-## [0.2.6] - 2021/05/14
+## [0.2.7] - 2021/05/14
     * Added filterCountry - you can select only those countries which you to display in dropdown
 
 ## [0.2.6] - 2021/05/14
