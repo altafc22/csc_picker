@@ -56,7 +56,7 @@ you will get feedback in onChanged functions
 <tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
 <tr><td>defaultCountry</td><td>CscCountry</td><td>To select default country</td></tr>
 <tr><td>countryFilter</td><td>CscCountry</td><td>Show only countries in dropdown that you want</td></tr>
-<tr><td>disableCountry</td><td>CscCountry</td><td>Disable country dropdown (Note: use it with default country)</td></tr>
+<tr><td>disableCountry</td><td>Boolean</td><td>Disable country dropdown (Note: use it with default country)</td></tr>
 <tr><td>countrySearchPlaceholder</td><td>String</td><td>Placeholder for country search field</td></tr>
 <tr><td>stateSearchPlaceholder</td><td>String</td><td>Placeholder for state search field</td></tr>
 <tr><td>citySearchPlaceholder</td><td>String</td><td>Placeholder for city search field</td></tr>
