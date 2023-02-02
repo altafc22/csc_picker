@@ -55,6 +55,7 @@ you will get feedback in onChanged functions
 <tr><td>dropdownDialogRadius</td><td>double</td><td>To change DropdownDialogBox radius</td></tr>
 <tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
 <tr><td>defaultCountry</td><td>DefaultCountry</td><td>To select default country</td></tr>
+<tr><td>countryFilter</td><td>Filter Countries</td><td>Show only countries in dropdown that you want</td></tr>
 <tr><td>disableCountry</td><td>DisableCountry</td><td>Disable country dropdown (Note: use it with default country)</td></tr>
 <tr><td>countrySearchPlaceholder</td><td>String</td><td>Placeholder for country search field</td></tr>
 <tr><td>stateSearchPlaceholder</td><td>String</td><td>Placeholder for state search field</td></tr>
