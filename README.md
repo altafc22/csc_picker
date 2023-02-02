@@ -162,6 +162,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///Disable country dropdown (Note: use it with default country)
                   //disableCountry: true,
 
+                  ///Country Filter [OPTIONAL PARAMETER]
+                  countryFilter: [CscCountry.India,CscCountry.United_States,CscCountry.Canada],
+
                   ///selected item style [OPTIONAL PARAMETER]
                   selectedItemStyle: TextStyle(
                     color: Colors.black,
