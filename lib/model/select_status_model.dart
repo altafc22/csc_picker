@@ -59,13 +59,15 @@ class Region {
   String? name;
   int? countryId;
   List<City>? city;
+  String? regionCode;
 
-  Region({this.id, this.name, this.countryId, this.city});
+  Region({this.id, this.name, this.countryId, this.city, this.regionCode});
 
   Region.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     countryId = json['country_id'];
+    regionCode = json['region_code'];
     if (json['city'] != null) {
       city = [];
       json['city'].forEach((v) {
@@ -79,6 +81,7 @@ class Region {
     data['id'] = this.id;
     data['name'] = this.name;
     data['country_id'] = this.countryId;
+    data['region_code'] = this.regionCode;
     if (this.city != null) {
       data['city'] = this.city!.map((v) => v.toJson()).toList();
     }
