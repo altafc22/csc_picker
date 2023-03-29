@@ -545,7 +545,7 @@ class CSCPicker extends StatefulWidget {
     this.countryDropdownLabel = "Country",
     this.stateDropdownLabel = "State",
     this.cityDropdownLabel = "City",
-    this.countryFilter,
+    this.countryFilter, this.selectedItemPadding,
   }) : super(key: key);
 
   final ValueChanged<String>? onCountryChanged;
@@ -576,6 +576,8 @@ class CSCPicker extends StatefulWidget {
   final String countryDropdownLabel;
   final String stateDropdownLabel;
   final String cityDropdownLabel;
+
+  final EdgeInsets? selectedItemPadding;
 
   final List<CscCountry>? countryFilter;
 
@@ -882,6 +884,7 @@ class CSCPickerState extends State<CSCPicker> {
       placeHolder: widget.countrySearchPlaceholder,
       selectedItemStyle: widget.selectedItemStyle,
       dropdownHeadingStyle: widget.dropdownHeadingStyle,
+      selectedItemPadding: widget.selectedItemPadding,
       itemStyle: widget.dropdownItemStyle,
       decoration: widget.dropdownDecoration,
       disabledDecoration: widget.disabledDropdownDecoration,
@@ -919,6 +922,7 @@ class CSCPickerState extends State<CSCPicker> {
       dropdownHeadingStyle: widget.dropdownHeadingStyle,
       itemStyle: widget.dropdownItemStyle,
       decoration: widget.dropdownDecoration,
+      selectedItemPadding: widget.selectedItemPadding,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
       disabledDecoration: widget.disabledDropdownDecoration,
@@ -946,6 +950,7 @@ class CSCPickerState extends State<CSCPicker> {
       selectedItemStyle: widget.selectedItemStyle,
       dropdownHeadingStyle: widget.dropdownHeadingStyle,
       itemStyle: widget.dropdownItemStyle,
+      selectedItemPadding: widget.selectedItemPadding,
       decoration: widget.dropdownDecoration,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,

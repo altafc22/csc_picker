@@ -14,6 +14,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final double? dialogRadius;
   final bool disabled;
   final String label;
+  //final EdgeInsetsGeometry? selectedItemPadding;
 
   final Function onChanged;
 
@@ -65,7 +66,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
           });
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: selectedItemPadding ?? EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           decoration: !disabled
               ? decoration != null
                   ? decoration
