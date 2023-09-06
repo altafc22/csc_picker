@@ -131,10 +131,10 @@
       "name": "csc_picker",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-09-06T07:10:48.159989Z",
+  "generated": "2023-09-06T08:43:16.515803Z",
   "generator": "pub",
   "generatorVersion": "3.1.0"
 }

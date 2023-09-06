@@ -42,7 +42,10 @@ class DropdownWithSearch<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return AbsorbPointer(
       absorbing: disabled,
-      child: GestureDetector(
+      child: InkWell(
+        hoverColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () {
           showDialog(
               context: context,
