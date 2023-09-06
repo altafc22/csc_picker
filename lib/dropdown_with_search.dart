@@ -159,6 +159,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
   void initState() {
     filteredList = widget.items;
     textController.addListener(() {
+      if (!mounted) return;
       setState(() {
         if (textController.text.isEmpty) {
           filteredList = widget.items;

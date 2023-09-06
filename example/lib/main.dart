@@ -131,6 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in country variable
                       countryValue = value ?? "";
@@ -139,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///triggers once state selected in dropdown
                   onStateChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in state variable
                       stateValue = value ?? "";
@@ -147,6 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///triggers once city selected in dropdown
                   onCityChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in city variable
                       cityValue = value ?? "";
@@ -165,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ///print newly selected country state and city in Text Widget
                 TextButton(
                     onPressed: () {
+                      if (!mounted) return;
                       setState(() {
                         address = "$cityValue, $stateValue, $countryValue";
                       });

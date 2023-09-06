@@ -620,16 +620,19 @@ class CSCPickerState extends State<CSCPicker> {
 
   Future<void> setDefaults() async {
     if (widget.currentCountry != null) {
+      if (!mounted) return;
       setState(() => _selectedCountry = widget.currentCountry);
       await getStates();
     }
 
     if (widget.currentState != null) {
+      if (!mounted) return;
       setState(() => _selectedState = widget.currentState!);
       await getCities();
     }
 
     if (widget.currentCity != null) {
+      if (!mounted) return;
       setState(() => _selectedCity = widget.currentCity!);
     }
   }
