@@ -73,7 +73,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
         child: inputDecoration != null
             ? TextField(
                 controller: TextEditingController(text: selected.toString()),
-                style: selectedItemStyle,
+                style: selectedItemStyle ?? TextStyle(color: Colors.black),
                 decoration: inputDecoration?.copyWith(
                   filled: inputDecoration?.filled ?? true,
                   fillColor: inputDecoration?.fillColor ??
