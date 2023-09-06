@@ -71,11 +71,14 @@ class DropdownWithSearch<T> extends StatelessWidget {
             ? TextField(
                 controller: TextEditingController(text: selected.toString()),
                 decoration: inputDecoration?.copyWith(
-                    suffixIcon: inputDecoration?.suffixIcon ??
-                        Icon(Icons.keyboard_arrow_down_rounded),
-                    enabled: false,
-                    disabledBorder: inputDecoration?.disabledBorder ??
-                        inputDecoration?.enabledBorder),
+                  suffixIcon: inputDecoration?.suffixIcon ??
+                      Icon(Icons.keyboard_arrow_down_rounded),
+                  enabled: false,
+                  disabledBorder: inputDecoration?.disabledBorder ??
+                      inputDecoration?.enabledBorder,
+                  focusedBorder: inputDecoration?.focusedBorder ??
+                      inputDecoration?.enabledBorder,
+                ),
               )
             : Container(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
