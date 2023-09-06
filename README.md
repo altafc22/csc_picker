@@ -213,6 +213,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       cityValue = value;
                     });
                   },
+
+                  /// Input Decoration for using CSC in forms [OPTIONAL PARAMETER]
+                  inputDecoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54))),
                 ),
 
                 ///print newly selected country state and city in Text Widget
