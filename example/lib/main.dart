@@ -64,9 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   /// Disable Country Selection if TRUE, selected country must not be null.
                   disableCountry: true,
 
-                  /// Default Selection
-                  currentCountry: CscCountry.India.name,
-                  defaultCountry: CscCountry.India,
+                  /// Default Selection [OPTIONAL PARAMETER]
+                  // currentCountry: CscCountry.India.name,
+                  // defaultCountry: CscCountry.India,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
@@ -152,7 +152,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       cityValue = value ?? "";
                     });
                   },
-                  // Input Decoration for using CSC in forms
+
+                  /// Input Decoration for using CSC in forms [OPTIONAL PARAMETER]
                   inputDecoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black54))),
