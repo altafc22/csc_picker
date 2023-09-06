@@ -61,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
                   flagState: CountryFlag.DISABLE,
 
+                  /// Disable Country Selection if TRUE, selected country must not be null.
+                  disableCountry: true,
+
+                  /// Default Selection
+                  currentCountry: CscCountry.India.name,
+                  defaultCountry: CscCountry.India,
+
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -126,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onCountryChanged: (value) {
                     setState(() {
                       ///store value in country variable
-                      countryValue = value!;
+                      countryValue = value ?? "";
                     });
                   },
 
@@ -134,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onStateChanged: (value) {
                     setState(() {
                       ///store value in state variable
-                      stateValue = value!;
+                      stateValue = value ?? "";
                     });
                   },
 
@@ -142,9 +149,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   onCityChanged: (value) {
                     setState(() {
                       ///store value in city variable
-                      cityValue = value!;
+                      cityValue = value ?? "";
                     });
                   },
+                  // Input Decoration for using CSC in forms
+                  inputDecoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54))),
 
                   ///Show only specific countries using country filter
                   // countryFilter: ["United States", "Canada", "Mexico"],
