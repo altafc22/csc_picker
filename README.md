@@ -63,6 +63,7 @@ you will get feedback in onChanged functions
 <tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for country dropdown</td></tr>
 <tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for state dropdown</td></tr>
 <tr><td>countryDropdownLabel</td><td>String</td><td>Label/Title for city dropdown</td></tr>
+<tr><td>inputDecoration</td><td>String</td><td>Input Decoration if need to use in from.</td></tr>
 </table>
 
 ### Example
@@ -212,6 +213,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       cityValue = value;
                     });
                   },
+
+                  /// Input Decoration for using CSC in forms [OPTIONAL PARAMETER]
+                  inputDecoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54))),
                 ),
 
                 ///print newly selected country state and city in Text Widget

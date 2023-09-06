@@ -14,6 +14,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final double? dialogRadius;
   final bool disabled;
   final String label;
+  final InputDecoration? inputDecoration;
 
   final Function onChanged;
 
@@ -24,6 +25,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
       required this.items,
       required this.selected,
       required this.onChanged,
+      required this.inputDecoration,
       this.selectedItemPadding,
       this.selectedItemStyle,
       this.dropdownHeadingStyle,
@@ -40,13 +42,17 @@ class DropdownWithSearch<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return AbsorbPointer(
       absorbing: disabled,
-      child: GestureDetector(
+      child: InkWell(
+        hoverColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         onTap: () {
           showDialog(
               context: context,
               builder: (context) => SearchDialog(
                   placeHolder: placeHolder,
                   title: title,
+                  inputDecoration: inputDecoration,
                   searchInputRadius: searchBarRadius,
                   dialogRadius: dialogRadius,
                   titleStyle: dropdownHeadingStyle,
@@ -64,34 +70,55 @@ class DropdownWithSearch<T> extends StatelessWidget {
                     }*/
           });
         },
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          decoration: !disabled
-              ? decoration != null
-                  ? decoration
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey.shade300, width: 1))
-              : disabledDecoration != null
-                  ? disabledDecoration
-                  : BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      color: Colors.grey.shade300,
-                      border:
-                          Border.all(color: Colors.grey.shade300, width: 1)),
-          child: Row(
-            children: [
-              Expanded(
-                  child: Text(selected.toString(),
-                      overflow: TextOverflow.ellipsis,
-                      style: selectedItemStyle != null
-                          ? selectedItemStyle
-                          : TextStyle(fontSize: 14))),
-              Icon(Icons.keyboard_arrow_down_rounded)
-            ],
-          ),
-        ),
+        child: inputDecoration != null
+            ? TextField(
+                controller: TextEditingController(text: selected.toString()),
+                style: selectedItemStyle ?? TextStyle(color: Colors.black),
+                decoration: inputDecoration?.copyWith(
+                  filled: inputDecoration?.filled ?? true,
+                  fillColor: inputDecoration?.fillColor ??
+                      (disabled ? Colors.grey.shade200 : Colors.white),
+                  suffixIcon: inputDecoration?.suffixIcon ??
+                      Icon(Icons.keyboard_arrow_down_rounded),
+                  enabled: false,
+                  disabledBorder: inputDecoration?.disabledBorder ??
+                      (disabled
+                          ? OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey))
+                          : inputDecoration?.enabledBorder),
+                  focusedBorder: inputDecoration?.focusedBorder ??
+                      inputDecoration?.enabledBorder,
+                ),
+              )
+            : Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                decoration: !disabled
+                    ? decoration != null
+                        ? decoration
+                        : BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            color: Colors.white,
+                            border: Border.all(
+                                color: Colors.grey.shade300, width: 1))
+                    : disabledDecoration != null
+                        ? disabledDecoration
+                        : BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            color: Colors.grey.shade300,
+                            border: Border.all(
+                                color: Colors.grey.shade300, width: 1)),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Text(selected.toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style: selectedItemStyle != null
+                                ? selectedItemStyle
+                                : TextStyle(fontSize: 14))),
+                    Icon(Icons.keyboard_arrow_down_rounded)
+                  ],
+                ),
+              ),
       ),
     );
   }
@@ -104,6 +131,7 @@ class SearchDialog extends StatefulWidget {
   final TextStyle? titleStyle;
   final TextStyle? itemStyle;
   final double? searchInputRadius;
+  final InputDecoration? inputDecoration;
 
   final double? dialogRadius;
 
@@ -113,6 +141,7 @@ class SearchDialog extends StatefulWidget {
       required this.placeHolder,
       required this.items,
       this.titleStyle,
+      required this.inputDecoration,
       this.searchInputRadius,
       this.dialogRadius,
       this.itemStyle})
@@ -130,6 +159,7 @@ class _SearchDialogState<T> extends State<SearchDialog> {
   void initState() {
     filteredList = widget.items;
     textController.addListener(() {
+      if (!mounted) return;
       setState(() {
         if (textController.text.isEmpty) {
           filteredList = widget.items;

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
+    // GlobalKey<CSCPickerState> cscPickerKey = GlobalKey();
 
     return Scaffold(
       appBar: AppBar(
@@ -60,6 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///Enable (get flag with country name) / Disable (Disable flag) / ShowInDropdownOnly (display flag in dropdown only) [OPTIONAL PARAMETER]
                   flagState: CountryFlag.DISABLE,
+
+                  /// Disable Country Selection if TRUE, selected country must not be null.
+                  disableCountry: true,
+
+                  /// Default Selection [OPTIONAL PARAMETER]
+                  // currentCountry: CscCountry.India.name,
+                  // defaultCountry: CscCountry.India,
 
                   ///Dropdown box decoration to style your dropdown selector [OPTIONAL PARAMETER] (USE with disabledDropdownDecoration)
                   dropdownDecoration: BoxDecoration(
@@ -89,7 +96,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///defaultCountry: CscCountry.India,
 
                   ///Country Filter [OPTIONAL PARAMETER]
-                  countryFilter: [CscCountry.India,CscCountry.United_States,CscCountry.Canada],
+                  countryFilter: [
+                    CscCountry.India,
+                    CscCountry.United_States,
+                    CscCountry.Canada
+                  ],
 
                   ///Disable country dropdown (Note: use it with default country)
                   //disableCountry: true,
@@ -120,27 +131,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in country variable
-                      countryValue = value;
+                      countryValue = value ?? "";
                     });
                   },
 
                   ///triggers once state selected in dropdown
                   onStateChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in state variable
-                      stateValue = value;
+                      stateValue = value ?? "";
                     });
                   },
 
                   ///triggers once city selected in dropdown
                   onCityChanged: (value) {
+                    if (!mounted) return;
                     setState(() {
                       ///store value in city variable
-                      cityValue = value;
+                      cityValue = value ?? "";
                     });
                   },
+
+                  /// Input Decoration for using CSC in forms [OPTIONAL PARAMETER]
+                  inputDecoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black54))),
 
                   ///Show only specific countries using country filter
                   // countryFilter: ["United States", "Canada", "Mexico"],
@@ -149,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ///print newly selected country state and city in Text Widget
                 TextButton(
                     onPressed: () {
+                      if (!mounted) return;
                       setState(() {
                         address = "$cityValue, $stateValue, $countryValue";
                       });
