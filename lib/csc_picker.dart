@@ -549,6 +549,7 @@ class CSCPicker extends StatefulWidget {
     this.title,
     this.clearButtonContent = const Text("Clear"),
     this.showClearButton = false,
+    this.inputDecoration,
   }) : super(key: key);
 
   final ValueChanged<String?>? onCountryChanged;
@@ -586,6 +587,7 @@ class CSCPicker extends StatefulWidget {
   final String countryDropdownLabel;
   final String stateDropdownLabel;
   final String cityDropdownLabel;
+  final InputDecoration? inputDecoration;
 
   final List<CscCountry>? countryFilter;
 
@@ -901,6 +903,7 @@ class CSCPickerState extends State<CSCPicker> {
   ///Country Dropdown Widget
   Widget countryDropdown() {
     return DropdownWithSearch(
+      inputDecoration: widget.inputDecoration,
       title: widget.countryDropdownLabel,
       placeHolder: widget.countrySearchPlaceholder,
       selectedItemStyle: widget.selectedItemStyle,
@@ -932,6 +935,7 @@ class CSCPickerState extends State<CSCPicker> {
   ///State Dropdown Widget
   Widget stateDropdown() {
     return DropdownWithSearch(
+      inputDecoration: widget.inputDecoration,
       title: widget.stateDropdownLabel,
       placeHolder: widget.stateSearchPlaceholder,
       disabled: _states.length == 0 ? true : false,
@@ -960,6 +964,7 @@ class CSCPickerState extends State<CSCPicker> {
   ///City Dropdown Widget
   Widget cityDropdown() {
     return DropdownWithSearch(
+      inputDecoration: widget.inputDecoration,
       title: widget.cityDropdownLabel,
       placeHolder: widget.citySearchPlaceholder,
       disabled: _cities.length == 0 ? true : false,
