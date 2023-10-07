@@ -827,11 +827,12 @@ class CSCPickerState extends State<CSCPicker> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-
                   widget.hideCountry ? Container() : countryDropdown(),
-                  widget.hideCountry ? Container() :SizedBox(
-                    height: 10.0,
-                  ),
+                  widget.hideCountry
+                      ? Container()
+                      : SizedBox(
+                          height: 10.0,
+                        ),
                   stateDropdown(),
                   SizedBox(
                     height: 10.0,
@@ -844,7 +845,9 @@ class CSCPickerState extends State<CSCPicker> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      widget.hideCountry ? Container() : Expanded(child: countryDropdown()),
+                      widget.hideCountry
+                          ? Container()
+                          : Expanded(child: countryDropdown()),
                       widget.showStates
                           ? SizedBox(
                               width: 10.0,
