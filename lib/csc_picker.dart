@@ -539,6 +539,7 @@ class CSCPicker extends StatefulWidget {
     this.currentState,
     this.currentCity,
     this.disableCountry = false,
+    this.hideCountry = false,
     this.countrySearchPlaceholder = "Search Country",
     this.stateSearchPlaceholder = "Search State",
     this.citySearchPlaceholder = "Search City",
@@ -560,6 +561,7 @@ class CSCPicker extends StatefulWidget {
   final String? currentCity;
 
   final bool disableCountry;
+  final bool hideCountry;
 
   // clear button parameters
   final bool showClearButton;
@@ -825,8 +827,9 @@ class CSCPickerState extends State<CSCPicker> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  countryDropdown(),
-                  SizedBox(
+
+                  widget.hideCountry ? Container() : countryDropdown(),
+                  widget.hideCountry ? Container() :SizedBox(
                     height: 10.0,
                   ),
                   stateDropdown(),
@@ -841,7 +844,7 @@ class CSCPickerState extends State<CSCPicker> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Expanded(child: countryDropdown()),
+                      widget.hideCountry ? Container() : Expanded(child: countryDropdown()),
                       widget.showStates
                           ? SizedBox(
                               width: 10.0,
