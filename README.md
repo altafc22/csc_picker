@@ -54,6 +54,7 @@ you will get feedback in onChanged functions
 <tr><td>dropdownItemStyle</td><td>TextStyle</td><td>To change DropdownDialog Item style</td></tr>
 <tr><td>dropdownDialogRadius</td><td>double</td><td>To change DropdownDialogBox radius</td></tr>
 <tr><td>searchBarRadius</td><td>double</td><td>To change search bar radius</td></tr>
+<tr><td>dropdownButtonHeight</td><td>double</td><td>To change dropdown button height</td></tr>
 <tr><td>defaultCountry</td><td>CscCountry</td><td>To select default country</td></tr>
 <tr><td>disableCountry</td><td>Boolean</td><td>Disable country dropdown (Note: use it with default country)</td></tr>
 <tr><td>countryFilter</td><td>List of CscCountry</td><td>Show only countries in dropdown that you want</td></tr>

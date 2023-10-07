@@ -530,6 +530,7 @@ class CSCPicker extends StatefulWidget {
     this.disabledDropdownDecoration,
     this.searchBarRadius,
     this.dropdownDialogRadius,
+    this.dropdownButtonHeight,
     this.flagState = CountryFlag.ENABLE,
     this.layout = Layout.horizontal,
     this.showStates = true,
@@ -578,6 +579,7 @@ class CSCPicker extends StatefulWidget {
   final Layout layout;
   final double? searchBarRadius;
   final double? dropdownDialogRadius;
+  final double? dropdownButtonHeight;
 
   final CscCountry? defaultCountry;
 
@@ -917,6 +919,7 @@ class CSCPickerState extends State<CSCPicker> {
       disabled: _country.length == 0 || widget.disableCountry ? true : false,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
+      height: widget.dropdownButtonHeight,
       label: widget.countrySearchPlaceholder,
       items: _country.map((String? dropDownStringItem) {
         return dropDownStringItem;
@@ -950,6 +953,7 @@ class CSCPickerState extends State<CSCPicker> {
       decoration: widget.dropdownDecoration,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
+      height: widget.dropdownButtonHeight,
       disabledDecoration: widget.disabledDropdownDecoration,
       selected: _selectedState,
       label: widget.stateSearchPlaceholder,
@@ -978,6 +982,7 @@ class CSCPickerState extends State<CSCPicker> {
       decoration: widget.dropdownDecoration,
       dialogRadius: widget.dropdownDialogRadius,
       searchBarRadius: widget.searchBarRadius,
+      height: widget.dropdownButtonHeight,
       disabledDecoration: widget.disabledDropdownDecoration,
       selected: _selectedCity,
       label: widget.citySearchPlaceholder,
