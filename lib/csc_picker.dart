@@ -1,8 +1,10 @@
+library csc_picker;
+
+import 'package:csc_picker/dropdown_with_search.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'model/select_status_model.dart';
-import 'package:csc_picker/dropdown_with_search.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 enum Layout { vertical, horizontal }
 
