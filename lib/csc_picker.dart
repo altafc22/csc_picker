@@ -518,38 +518,39 @@ const Map<CscCountry, int> Countries = {
 
 class CSCPicker extends StatefulWidget {
   ///CSC Picker Constructor
-  const CSCPicker({
-    Key? key,
-    this.onCountryChanged,
-    this.onStateChanged,
-    this.onCityChanged,
-    this.selectedItemStyle,
-    this.dropdownHeadingStyle,
-    this.dropdownItemStyle,
-    this.dropdownDecoration,
-    this.disabledDropdownDecoration,
-    this.searchBarRadius,
-    this.dropdownDialogRadius,
-    this.flagState = CountryFlag.ENABLE,
-    this.layout = Layout.horizontal,
-    this.showStates = true,
-    this.showCities = true,
-    this.defaultCountry,
-    this.currentCountry,
-    this.currentState,
-    this.currentCity,
-    this.disableCountry = false,
-    this.countrySearchPlaceholder = "Search Country",
-    this.stateSearchPlaceholder = "Search State",
-    this.citySearchPlaceholder = "Search City",
-    this.countryDropdownLabel = "Country",
-    this.stateDropdownLabel = "State",
-    this.cityDropdownLabel = "City",
-    this.countryFilter,
-    this.title,
-    this.clearButtonContent = const Text("Clear"),
-    this.showClearButton = false,
-  }) : super(key: key);
+  const CSCPicker(
+      {Key? key,
+      this.onCountryChanged,
+      this.onStateChanged,
+      this.onCityChanged,
+      this.selectedItemStyle,
+      this.dropdownHeadingStyle,
+      this.dropdownItemStyle,
+      this.dropdownDecoration,
+      this.disabledDropdownDecoration,
+      this.searchBarRadius,
+      this.dropdownDialogRadius,
+      this.flagState = CountryFlag.ENABLE,
+      this.layout = Layout.horizontal,
+      this.showStates = true,
+      this.showCities = true,
+      this.defaultCountry,
+      this.currentCountry,
+      this.currentState,
+      this.currentCity,
+      this.disableCountry = false,
+      this.countrySearchPlaceholder = "Search Country",
+      this.stateSearchPlaceholder = "Search State",
+      this.citySearchPlaceholder = "Search City",
+      this.countryDropdownLabel = "Country",
+      this.stateDropdownLabel = "State",
+      this.cityDropdownLabel = "City",
+      this.countryFilter,
+      this.title,
+      this.clearButtonContent = const Text("Clear"),
+      this.showClearButton = false,
+      this.countryJsonFile = "packages/csc_picker/lib/assets/country.json"})
+      : super(key: key);
 
   final ValueChanged<String?>? onCountryChanged;
   final ValueChanged<String?>? onStateChanged;
@@ -563,6 +564,7 @@ class CSCPicker extends StatefulWidget {
 
   // clear button parameters
   final bool showClearButton;
+  final String countryJsonFile;
   final Widget clearButtonContent;
 
   // title widget
@@ -641,8 +643,7 @@ class CSCPickerState extends State<CSCPicker> {
 
   ///Read JSON country data from assets
   Future<dynamic> getResponse() async {
-    var res = await rootBundle
-        .loadString('packages/csc_picker/lib/assets/country.json');
+    var res = await rootBundle.loadString(widget.countryJsonFile);
     return jsonDecode(res);
   }
 
