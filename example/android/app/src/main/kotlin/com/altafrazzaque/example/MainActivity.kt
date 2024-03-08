@@ -1,6 +1,6 @@
 package com.altafrazzaque.example
 
-import io.flutter.embedding.android.FlutterActivity
+
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity

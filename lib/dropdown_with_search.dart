@@ -9,9 +9,11 @@ class DropdownWithSearch<T> extends StatelessWidget {
   final TextStyle? selectedItemStyle;
   final TextStyle? dropdownHeadingStyle;
   final TextStyle? itemStyle;
+  final Decoration?  searchDialogDecoration;
   final BoxDecoration? decoration, disabledDecoration;
   final double? searchBarRadius;
   final double? dialogRadius;
+  final Decoration? dropDownDecoration;
   final bool disabled;
   final String label;
 
@@ -27,6 +29,8 @@ class DropdownWithSearch<T> extends StatelessWidget {
       this.selectedItemPadding,
       this.selectedItemStyle,
       this.dropdownHeadingStyle,
+      this.dropDownDecoration,
+        this.searchDialogDecoration,
       this.itemStyle,
       this.decoration,
       this.disabledDecoration,
@@ -47,6 +51,7 @@ class DropdownWithSearch<T> extends StatelessWidget {
               builder: (context) => SearchDialog(
                   placeHolder: placeHolder,
                   title: title,
+                  searchDialogDecoration: searchDialogDecoration,
                   searchInputRadius: searchBarRadius,
                   dialogRadius: dialogRadius,
                   titleStyle: dropdownHeadingStyle,
@@ -104,7 +109,7 @@ class SearchDialog extends StatefulWidget {
   final TextStyle? titleStyle;
   final TextStyle? itemStyle;
   final double? searchInputRadius;
-
+  final Decoration? searchDialogDecoration;
   final double? dialogRadius;
 
   const SearchDialog(
@@ -112,6 +117,7 @@ class SearchDialog extends StatefulWidget {
       required this.title,
       required this.placeHolder,
       required this.items,
+      this.searchDialogDecoration,
       this.titleStyle,
       this.searchInputRadius,
       this.dialogRadius,
@@ -159,8 +165,17 @@ class _SearchDialogState<T> extends State<SearchDialog> {
           borderRadius: widget.dialogRadius != null
               ? BorderRadius.circular(widget.dialogRadius!)
               : BorderRadius.circular(14)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.0),
+      child: Container(
+        // borderRadius: BorderRadius.circular(12.0),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.all(widget.dialogRadius != null
+        //       ? Radius.circular(widget.dialogRadius!)
+        //       : Radius.circular(5)),
+        //   color: widget.searchBackgroundColor != null
+        //       ? widget.searchBackgroundColor
+        //       : Colors.white,
+        // ),
+        decoration: widget.searchDialogDecoration,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

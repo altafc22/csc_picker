@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({required this.title});
 
   final String title;
 
@@ -89,7 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///defaultCountry: CscCountry.India,
 
                   ///Country Filter [OPTIONAL PARAMETER]
-                  countryFilter: [CscCountry.India,CscCountry.United_States,CscCountry.Canada],
+                  countryFilter: [
+                    CscCountry.India,
+                    CscCountry.United_States,
+                    CscCountry.Canada
+                  ],
 
                   ///Disable country dropdown (Note: use it with default country)
                   //disableCountry: true,
@@ -118,11 +122,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///Search bar radius [OPTIONAL PARAMETER]
                   searchBarRadius: 10.0,
 
+                  ///search bar dialog box decoration [OPTIONAL PARAMETER]
+                  searchDialogDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
+                  ),
+
                   ///triggers once country selected in dropdown
                   onCountryChanged: (value) {
                     setState(() {
                       ///store value in country variable
-                      countryValue = value;
+                      countryValue = value!;
                     });
                   },
 
@@ -130,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onStateChanged: (value) {
                     setState(() {
                       ///store value in state variable
-                      stateValue = value;
+                      stateValue = value!;
                     });
                   },
 
@@ -138,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onCityChanged: (value) {
                     setState(() {
                       ///store value in city variable
-                      cityValue = value;
+                      cityValue = value!;
                     });
                   },
 

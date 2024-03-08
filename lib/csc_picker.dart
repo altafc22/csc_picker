@@ -522,6 +522,7 @@ class CSCPicker extends StatefulWidget {
     Key? key,
     this.onCountryChanged,
     this.onStateChanged,
+    this.searchDialogDecoration,
     this.onCityChanged,
     this.selectedItemStyle,
     this.dropdownHeadingStyle,
@@ -576,6 +577,7 @@ class CSCPicker extends StatefulWidget {
   final Layout layout;
   final double? searchBarRadius;
   final double? dropdownDialogRadius;
+  final BoxDecoration? searchDialogDecoration;
 
   final CscCountry? defaultCountry;
 
@@ -903,6 +905,7 @@ class CSCPickerState extends State<CSCPicker> {
     return DropdownWithSearch(
       title: widget.countryDropdownLabel,
       placeHolder: widget.countrySearchPlaceholder,
+      searchDialogDecoration : widget.searchDialogDecoration,
       selectedItemStyle: widget.selectedItemStyle,
       dropdownHeadingStyle: widget.dropdownHeadingStyle,
       itemStyle: widget.dropdownItemStyle,
