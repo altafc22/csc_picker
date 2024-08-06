@@ -1,3 +1,7 @@
+## [0.2.8] - 2021/05/14
+    * Added dropdownVerticalSpacing - gives ability to updated spacing between dropdowns as vertically
+    * Added dropdownHorizontalSpacing - gives ability to updated spacing between dropdowns as horizontally (between country and state dropdown in  Layout.horizontal)
+
 ## [0.2.7] - 2021/05/14
     * Added filterCountry - you can select only those countries which you to display in dropdown
 
