@@ -549,6 +549,8 @@ class CSCPicker extends StatefulWidget {
     this.title,
     this.clearButtonContent = const Text("Clear"),
     this.showClearButton = false,
+    this.dropdownVerticalSpacing = 10,
+    this.dropdownHorizontalSpacing = 10,
   }) : super(key: key);
 
   final ValueChanged<String?>? onCountryChanged;
@@ -588,6 +590,12 @@ class CSCPicker extends StatefulWidget {
   final String cityDropdownLabel;
 
   final List<CscCountry>? countryFilter;
+
+  /// Spacing between dropdowns vertically
+  final double dropdownVerticalSpacing;
+
+  /// Spacing between dropdowns horizontally between country and state dropdown in  Layout.horizontal
+  final double dropdownHorizontalSpacing;
 
   @override
   CSCPickerState createState() => CSCPickerState();
@@ -827,11 +835,11 @@ class CSCPickerState extends State<CSCPicker> {
                 children: <Widget>[
                   countryDropdown(),
                   SizedBox(
-                    height: 10.0,
+                    height: widget.dropdownVerticalSpacing,
                   ),
                   stateDropdown(),
                   SizedBox(
-                    height: 10.0,
+                    height: widget.dropdownVerticalSpacing,
                   ),
                   cityDropdown()
                 ],
@@ -844,7 +852,7 @@ class CSCPickerState extends State<CSCPicker> {
                       Expanded(child: countryDropdown()),
                       widget.showStates
                           ? SizedBox(
-                              width: 10.0,
+                              width: widget.dropdownHorizontalSpacing,
                             )
                           : Container(),
                       widget.showStates
@@ -853,7 +861,7 @@ class CSCPickerState extends State<CSCPicker> {
                     ],
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: widget.dropdownVerticalSpacing,
                   ),
                   widget.showStates && widget.showCities
                       ? cityDropdown()
