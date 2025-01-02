@@ -234,3 +234,11 @@ class _MyHomePageState extends State<MyHomePage> {
 ### Special Thanks to
 - Okoh Emmanuel, country_state_city_picker [country_state_city_picker](https://github.com/prof22/country_state_city_picker)
 - Darshan Gada, countries-states-cities-database [countries-states-cities-database](https://github.com/dr5hn/countries-states-cities-database)
+
+## New Features in 0.3.0
+
+- ✨ Improved error handling
+- 🔒 Better null safety support
+- 🧪 Comprehensive test coverage
+- 🏗️ New location model for type safety
+- 🎨 Customizable error messages

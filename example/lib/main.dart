@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -31,15 +31,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   /// Variables to store country state city data in onChanged method.
-  String countryValue = "";
-  String stateValue = "";
-  String cityValue = "";
+  String? countryValue = "";
+  String? stateValue = "";
+  String? cityValue = "";
   String address = "";
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -89,7 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   ///defaultCountry: CscCountry.India,
 
                   ///Country Filter [OPTIONAL PARAMETER]
-                  countryFilter: [CscCountry.India,CscCountry.United_States,CscCountry.Canada],
+                  countryFilter: [
+                    CscCountry.India,
+                    CscCountry.United_States,
+                    CscCountry.Canada
+                  ],
 
                   ///Disable country dropdown (Note: use it with default country)
                   //disableCountry: true,

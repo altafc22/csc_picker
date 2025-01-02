@@ -56,6 +56,12 @@
 ## [0.0.1] - 2021/02/28
     * Initial Release.
     
+## [Next Version]
+- Migrated to null safety
+- Updated dialog theme implementation
+- Improved error handling
+- Added proper documentation
+    
 
 
 
