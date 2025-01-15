@@ -548,12 +548,9 @@ class CSCPicker extends StatefulWidget {
 
     this.countryFilter, this.selectedItemPadding,
     this.countryFilter,
-    this.title,
-    this.clearButtonContent = const Text("Clear"),
-    this.showClearButton = false,
   }) : super(key: key);
 
-  final ValueChanged<String?>? onCountryChanged;
+  final ValueChanged<String>? onCountryChanged;
   final ValueChanged<String?>? onStateChanged;
   final ValueChanged<String?>? onCityChanged;
 
@@ -562,13 +559,6 @@ class CSCPicker extends StatefulWidget {
   final String? currentCity;
 
   final bool disableCountry;
-
-  // clear button parameters
-  final bool showClearButton;
-  final Widget clearButtonContent;
-
-  // title widget
-  final Widget? title;
 
   ///Parameters to change style of CSC Picker
   final TextStyle? selectedItemStyle, dropdownHeadingStyle, dropdownItemStyle;
@@ -657,7 +647,7 @@ class CSCPickerState extends State<CSCPicker> {
     if (_countryFilter.isNotEmpty) {
       _countryFilter.forEach((element) {
         var result = countries[Countries[element]!];
-        if (result != null) addCountryToList(result);
+        if(result!=null) addCountryToList(result);
       });
     } else {
       countries.forEach((data) {
@@ -812,19 +802,6 @@ class CSCPickerState extends State<CSCPicker> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (widget.title != null || widget.showClearButton)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (widget.title != null) Expanded(flex: 2, child: widget.title!),
-              if (widget.showClearButton)
-                Expanded(flex: 1, child: clearButton()),
-            ],
-          ),
-        if (widget.title != null || widget.showClearButton)
-          const SizedBox(
-            height: 10.0,
-          ),
         widget.layout == Layout.vertical
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -992,25 +969,5 @@ class CSCPickerState extends State<CSCPicker> {
         value != null ? _onSelectedCity(value) : _onSelectedCity(_selectedCity);
       },
     );
-  }
-
-  Widget clearButton() {
-    return ElevatedButton(
-      onPressed: () => clearFields(),
-      child: widget.clearButtonContent,
-    );
-  }
-
-  clearFields() {
-    if (this.widget.onCountryChanged != null)
-      this.widget.onCountryChanged!(null);
-    _states.clear();
-    _cities.clear();
-    _selectedState = widget.stateDropdownLabel;
-    _selectedCity = widget.cityDropdownLabel;
-    if (this.widget.onStateChanged != null) this.widget.onStateChanged!(null);
-    if (this.widget.onCityChanged != null) this.widget.onCityChanged!(null);
-    _selectedCountry = null;
-    getStates();
   }
 }
