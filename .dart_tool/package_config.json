@@ -152,10 +152,10 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2024-12-20T23:49:52.211411Z",
+  "generated": "2025-01-26T12:21:48.767283Z",
   "generator": "pub",
-  "generatorVersion": "3.6.0",
+  "generatorVersion": "3.6.1",
   "flutterRoot": "file:///C:/ProgFiles/Flutter.io",
-  "flutterVersion": "3.27.1",
+  "flutterVersion": "3.27.2",
   "pubCache": "file:///C:/Users/Damian/AppData/Local/Pub/Cache"
 }
